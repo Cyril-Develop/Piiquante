@@ -19,7 +19,7 @@
 - Express
 - Mongoose
 
-## Hébergement :
+## Base de données :
 - MongoDB Atlas
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/Cyril-Develop/Piiquante?style=for-the-badge)
