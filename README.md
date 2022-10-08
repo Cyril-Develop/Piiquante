@@ -45,7 +45,6 @@ USER_DB = 'clientX'
 PASSWORD_DB = 'cc63fdgtU66iyJsw'
 PASSWORD_JWT = '0de67732-b0ff-4101-9ce0-57e9be97cbb6'
 NAME_DATABASE = 'cluster0'
-
 ```
 Démarrer ensuite le serveur avec la commande `node server` 
 
