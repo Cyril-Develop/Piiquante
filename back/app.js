@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const path = require('path');
 const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 
 //Connection database
 require('./mongo');
@@ -15,7 +16,14 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use(helmet({
     crossOriginResourcePolicy: { policy: "same-site"}
-  }));
+}));
+
+//Middleware to limit the amount of request done
+const limiter = rateLimit({
+  window: 15 * 60 * 1000,
+  max: 100
+});
+app.use(limiter);
 
 //Routes
 const userRoutes = require('./routes/user');
