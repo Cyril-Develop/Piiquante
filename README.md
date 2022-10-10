@@ -39,12 +39,12 @@ Puis vous rendre sur `http://localhost:4200/`
 
 A la racine du dossier back,\
 créer un répertoire `images`\
-créer un fichier `.env`
+créer un fichier `.env` en précisant la valeur de chaque variable.
 ```
-USER_DB = 'clientX'
-PASSWORD_DB = 'cc63fdgtU66iyJsw'
-PASSWORD_JWT = '0de67732-b0ff-4101-9ce0-57e9be97cbb6'
-NAME_DATABASE = 'cluster0'
+USER_DB = '<Nom d'utilisateur mongoDB>'
+PASSWORD_DB = '<Mot de passe mongoDB>'
+PASSWORD_JWT = '<Clé secrète token>'
+NAME_DATABASE = '<Nom base de donnée mongoDB>'
 ```
 Démarrer ensuite le serveur avec la commande `node server` 
 
