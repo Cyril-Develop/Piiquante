@@ -37,7 +37,7 @@ Puis vous rendre sur `http://localhost:4200/`
 
 ### Backend :
 
-A la racine du dossier back,\
+A la racine du dossier back\
 créer un répertoire `images`\
 créer un fichier `.env` en précisant une valeur pour chaque variable comme suit :
 ```
