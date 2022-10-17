@@ -25,7 +25,7 @@ exports.login = (req, res) => {
 	User.findOne({email})
 		.then(user => {
 			if(!user){
-				res.status(401).send({message: 'Utilisateur inconnu'})
+				res.status(401).send({message: 'Informations erronées !'})
 			} else {
 				bcrypt.compare(password, user.password)
 					.then(valid => {
