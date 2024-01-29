@@ -7,5 +7,4 @@ const uri = `mongodb+srv://${USER}:${PASSWORD}@${DATABASE}.hndxnok.mongodb.net/?
 //Connect to MongoDB
 mongoose.connect(uri)
 	.then(() => console.log('connected to Mongo'))
-	.catch(error => console.error({error}));
-	
+	.catch(error => console.error({error}));	
