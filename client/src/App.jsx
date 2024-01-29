@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBrowserRouter, Navigate, RouterProvider, Outlet } from 'react-router-dom';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import Header from './components/Header';
+import Header from './components/header/Header';
 import Home from './pages/home/Home';
 import Login from './pages/connection/Login';
 import Register from './pages/connection/Register';
