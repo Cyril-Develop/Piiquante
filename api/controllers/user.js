@@ -8,7 +8,10 @@ const tokenKey = process.env.PASSWORD_JWT;
 exports.signup = (req, res) => {
 	bcrypt.hash(req.body.password, 10)
 		.then(hash => {
+			console.log(req.body);
 			const user = new User({
+				lastname: req.body.lastname,
+				firstname: req.body.firstname,
 				email: req.body.email,
 				password: hash
 		});
@@ -32,6 +35,8 @@ exports.login = (req, res) => {
 						if(valid){
 							res.status(200).json({
 								userId: user._id,
+								lastname: user.lastname,
+								firstname: user.firstname,
 								token: jwt.sign({userId: user._id}, tokenKey, {expiresIn: "24h"})
 							});
 						} else {
