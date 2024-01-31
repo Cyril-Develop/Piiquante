@@ -2,15 +2,13 @@ import { useLocation, Link } from "react-router-dom";
 import "./header.scss";
 import Logo from "../../images/logo.png";
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Header() {
 
     const location = useLocation();
-
-    const handleLogout = () => {
-        localStorage.removeItem("user");
-        window.location.reload();
-    };
+    const { logout } = useContext(AuthContext);
 
     return (
         <header className="header">
@@ -47,7 +45,7 @@ export default function Header() {
                     {
                         location.pathname === "/" &&
                         <li>
-                            <button onClick={handleLogout}> 
+                            <button onClick={logout}> 
                                 Se déconnecter
                                 <LogoutIcon style={{ fontSize: "2rem" }} />
                             </button>

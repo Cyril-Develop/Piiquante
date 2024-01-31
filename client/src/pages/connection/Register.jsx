@@ -34,7 +34,7 @@ export default function Register() {
                         {passwordShown ? <VisibilityOffIcon style={{ fontSize: "2rem" }} /> : <VisibilityIcon style={{ fontSize: "2rem" }} />}
                     </button>
                 </div>
-                <button className="connection_form_btn_submit">S'inscrire</button>
+                <button className="connection_form_btn_submit" type='submit'>S'inscrire</button>
             </form>
         </main>
     )

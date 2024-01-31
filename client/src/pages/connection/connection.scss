@@ -13,6 +13,7 @@
     &_form{
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: 2rem;
         width: 50%;
         max-width: 500px;
@@ -22,6 +23,7 @@
         &_group{
             display: flex;
             flex-direction: column;
+            width: 100%;
             gap: 1rem;
             font-size: clamp(1.6rem, 2vw, 2rem);
             font-family: 'Lato', sans-serif;
@@ -52,6 +54,23 @@
         &_btn_submit{
             height: 5rem;
             border: 1px solid rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+        }
+
+        &_loader{
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 0, 0, 0);
+            border-top: 2px solid #c11719;
+            border-bottom: 2px solid #c11719;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
         }
     
         .password{

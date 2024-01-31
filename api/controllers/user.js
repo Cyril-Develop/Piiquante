@@ -8,7 +8,6 @@ const tokenKey = process.env.PASSWORD_JWT;
 exports.signup = (req, res) => {
 	bcrypt.hash(req.body.password, 10)
 		.then(hash => {
-			console.log(req.body);
 			const user = new User({
 				lastname: req.body.lastname,
 				firstname: req.body.firstname,
