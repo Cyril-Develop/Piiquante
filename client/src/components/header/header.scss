@@ -1,54 +1,59 @@
+@import '../../sass/index.scss';
+
 .header{
-    padding: 1rem;
+    height: 20rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: $color-primary;
 
     nav{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 1rem;
+        //direction justify align gap
+        @include flex(row, space-between, center, 1rem);
+        height: 100%;
+        padding: 1rem 2rem;
 
         ul{
-            display: flex;
-            gap: 5rem;
+            //direction justify align gap
+            @include flex(row, null, null, 5rem);
             width: 20%;
-            font-size: clamp(1.6rem, 2vw, 2rem);
         }
-
+        
         ul:nth-child(3){
-            display: flex;
-            justify-content: flex-end;
+            //direction justify align gap
+            @include flex(row, flex-end, null, null);
         }
-
+        
         li{
-
+            font-family: 'Fjord One', serif;
+            font-weight: 600;
+            font-size: clamp(1.6rem, 1.8vw, 1.8rem);
             button{
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-                font-size: clamp(1.6rem, 2vw, 2rem);
-                border: none;
+                //direction justify align gap
+                @include flex(row, null, center, 1rem);
+                font-family: inherit;
+                font-weight: inherit;
             }
         }
 
         div{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            //direction justify align gap
+            @include flex(column, null, center, 1rem);
             text-align: center;
-            gap: 1rem;
             margin: auto;
 
             img{
-                width: 32rem;
+                width: 30rem;
             }
         
             h1{
-                font-size: clamp(2rem, 3vw, 3rem);
+                font-size: clamp(2rem, 2.5vw, 2.5rem);
+                color: $color-primary;
+                background-color: $color-dark;
+                padding: .5rem 1.5rem;            
+                transform: rotate(-1deg);
             }
         }
     }   
     .showCurrentPath{
-        text-decoration: underline;
+        text-decoration:line-through;
     }
 }

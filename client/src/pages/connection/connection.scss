@@ -1,8 +1,11 @@
+@import '../../sass/index.scss';
+
 .connection{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    //direction justify align gap
+    @include flex(column, center, center, null);
     padding: 0 1rem;
+    min-height: calc(100vh - 20rem);
+    background-color: $color-primary;
     
     &_btn-guest{
         position: absolute;
@@ -11,50 +14,51 @@
     }
 
     &_form{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
+        //direction justify align gap
+        @include flex(column, center, center, 2rem);
         width: 50%;
         max-width: 500px;
-        margin-top: 5rem;
+        padding: 5rem;
+        background-color: $color-secondary;
+        color: $color-primary;
+        @include tornCard;
 
-    
         &_group{
-            display: flex;
-            flex-direction: column;
+            //direction justify align gap
+            @include flex(column, null, null, 1rem);
             width: 100%;
-            gap: 1rem;
             font-size: clamp(1.6rem, 2vw, 2rem);
-            font-family: 'Lato', sans-serif;
             
             input{
                 height: 5rem;
                 padding-left: 1rem;
+                background-color: $color-primary;
                 font-size: clamp(1.6rem, 1.8vw, 1.8rem);
                 border: 1px solid rgba(0, 0, 0, 0.2);
             }
     
             &_btn{
                 position: absolute;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                //direction justify align gap
+                @include flex(row, center, center, null);
                 top: 5rem;
                 right: 1rem;
-                height: auto;
+                color: $color-dark;
             }
 
         }
         span{
-            font-size: clamp(1.4rem, 1.6vw, 1.6rem);
-            color: #c11719;
+            font-size: clamp(1.6rem, 1.6vw, 1.8rem);
+            color: $color-tertiary;
+            font-family: 'Merriweather', serif;
         }
     
         &_btn_submit{
             height: 5rem;
-            border: 1px solid rgba(0, 0, 0, 0.2);
             padding: 1rem;
+            background-color: $color-dark;
+            color: $color-primary;
+            font-family: 'Merriweather', serif;
         }
 
         &_loader{
@@ -62,8 +66,8 @@
             height: 4rem;
             border-radius: 50%;
             border: 2px solid rgba(0, 0, 0, 0);
-            border-top: 2px solid #c11719;
-            border-bottom: 2px solid #c11719;
+            border-top: 2px solid $color-tertiary;
+            border-bottom: 2px solid $color-tertiary;
             animation: spin 1s linear infinite;
         }
 

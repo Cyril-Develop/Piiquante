@@ -28,7 +28,7 @@ export default function Header() {
                 </ul>
                 <div>
                     <img src={Logo} alt="Piiquante - logo" />
-                    <h1>Les meilleures critiques de sauce piquante du Web !</h1>
+                    <h1>Les meilleures critiques de sauce piquante du web !</h1>
                 </div>
                 <ul>
                     {

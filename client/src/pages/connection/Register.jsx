@@ -12,9 +12,21 @@ export default function Register() {
         setPasswordShown(!passwordShown);
     };
 
+    const handleRegister = e => {
+        e.preventDefault();
+        
+        const form = e.target;
+        const lastname = form.elements.lastname;
+        const firstname = form.elements.firstname;
+        const email = form.elements.email;
+        const password = form.elements.password;
+
+        console.log(lastname, firstname, email, password);
+    };
+
     return (
         <main className="connection">
-            <form className="connection_form">
+            <form className="connection_form" onSubmit={handleRegister}>
                 <div className="connection_form_group">
                     <label htmlFor="lastname">Nom</label>
                     <input type="text" id="lastname" name="lastname" />
