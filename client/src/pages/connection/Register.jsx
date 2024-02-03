@@ -2,6 +2,7 @@ import "./connection.scss";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default function Register() {
@@ -88,6 +89,7 @@ export default function Register() {
     const handleRegister = async (e) => {
         e.preventDefault();
         setIsSubmit(true);
+        setBadSubmit("");
         setFormError(checkFields(formValues));
     };
 
@@ -98,7 +100,6 @@ export default function Register() {
     }, [formError, isSubmit]);
 
     const submitForm = async () => {
-        console.log("envoi des données");
         try {
             setLoading(true);
             await axios.post(
@@ -128,8 +129,6 @@ export default function Register() {
         }
     }, [userCreated]);
 
-    console.log(badSubmit);
-
     return (
         <main className="connection">
             {userCreated && (
@@ -142,6 +141,7 @@ export default function Register() {
                 noValidate
                 onSubmit={handleRegister}
             >
+                <h2>Inscription</h2>
                 <div className="connection_form_group">
                     <label htmlFor="lastname">Nom</label>
                     <input
@@ -207,8 +207,10 @@ export default function Register() {
                 </button>
                 {loading && <div className="connection_form_loader"></div>}
                 {!loading && formError.empty && <span>{formError.empty}</span>}
-                {!loading && badSubmit && <span>{badSubmit}</span>}
+                {!loading && !formError.empty && badSubmit && <span>{badSubmit}</span>}
+
             </form>
+            <p>Vous possédez déjà un compte ? <Link to={"/piiquante/login"}>Se connecter</Link></p>
         </main>
     );
 }

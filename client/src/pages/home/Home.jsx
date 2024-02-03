@@ -1,7 +1,9 @@
-
+import './home.scss';
 
 export default function Home() {
-  return (
-    <div>Homepage</div>
-  )
+    return (
+        <main className="home">
+            Homepage
+        </main>
+    )
 }

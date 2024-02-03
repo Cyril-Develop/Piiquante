@@ -29,14 +29,18 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Merriweather', serif;
 }
 
-label{
+p, label, span{
     font-family: 'Fjord One', serif;
+}
+
+p, span{
+    font-size: clamp(1.6rem, 1.6vw, 1.8rem);
 }
 
 button {
     cursor: pointer;
     border: none;
     background-color: transparent;
-    padding: 1rem 2rem;
-    font-size: clamp(1.6rem, 1.8vw, 1.8rem);
+    font-family: 'Merriweather', serif;
+    font-size: clamp(1.6rem, 1.6vw, 1.8rem);
 }

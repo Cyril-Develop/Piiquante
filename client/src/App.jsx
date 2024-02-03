@@ -27,26 +27,26 @@ export default function App() {
 
     const PrivateRoute = ({ component }) => {
         if (!currentUser) {
-            return <Navigate to='/login' />;
+            return <Navigate to='/piiquante/login' />;
         }
         return component;
     };
 
     const router = createBrowserRouter([
         {
-            path: "/",
+            path: "/piiquante/",
             element: <Layout><Outlet /></Layout>,
             children: [
                 {
-                    path: "/",
+                    path: "/piiquante/",
                     element: <PrivateRoute component={<Home />} />
                 },
                 {
-                    path: "/login",
+                    path: "/piiquante/login",
                     element: <Login />
                 },
                 {
-                    path: "/register",
+                    path: "/piiquante/register",
                     element: <Register />
                 }
             ]

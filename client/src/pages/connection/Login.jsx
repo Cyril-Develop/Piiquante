@@ -3,7 +3,7 @@ import { AuthContext } from "../../context/AuthContext";
 import "./connection.scss";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
 export default function Login() {
@@ -47,8 +47,9 @@ export default function Login() {
                 { email, password }
             );
             setCurrentUser(res.data);
-            navigate("/");
+            navigate("/piiquante/");
         } catch (err) {
+            console.log(err);
             if (err.response.status === 401) {
                 setError("Email ou mot de passe incorrect");
             } else {
@@ -76,9 +77,10 @@ export default function Login() {
                 Se connecter en tant qu'invité
             </button>
             <form className="connection_form" noValidate onSubmit={loginAsUser}>
+                <h2>Connexion</h2>
                 <div className="connection_form_group">
                     <label htmlFor="email">Email</label>
-                    <input type="email" id="email" name="email" maxLength={40}/>
+                    <input type="email" id="email" name="email" maxLength={40} />
                 </div>
                 <div className="connection_form_group password">
                     <label htmlFor="password">Mot de passe</label>
@@ -105,7 +107,9 @@ export default function Login() {
                 </button>
                 {loading && <div className="connection_form_loader"></div>}
                 {!loading && error && <span>{error}</span>}
+
             </form>
+            <p>Pas encore de compte ? <Link to={"/piiquante/register"}>S'inscrire</Link></p>
         </main>
     );
 }

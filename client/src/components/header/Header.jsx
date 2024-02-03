@@ -11,66 +11,22 @@ export default function Header() {
 
     return (
         <header className="header">
-            <nav>
-                <ul>
-                    {location.pathname === "/" && (
-                        <>
-                            <li>
-                                <a href="/" className="showCurrentPath">
-                                    Accueil
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/" className="showCurrentPath">
-                                    Accueil
-                                </a>
-                            </li>
-                        </>
-                    )}
-                </ul>
-                <div>
+            <h1>
+                <figure>
                     <img src={Logo} alt="Piiquante - logo" />
-                    <h1>Les meilleures critiques de sauce piquante du web !</h1>
-                </div>
-                <ul>
-                    {location.pathname !== "/" && (
-                        <>
-                            <li>
-                                <Link
-                                    to="/login"
-                                    className={
-                                        location.pathname === "/login"
-                                            ? "showCurrentPath"
-                                            : ""
-                                    }
-                                >
-                                    Connexion
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to="/register"
-                                    className={
-                                        location.pathname === "/register"
-                                            ? "showCurrentPath"
-                                            : ""
-                                    }
-                                >
-                                    Inscription
-                                </Link>
-                            </li>
-                        </>
-                    )}
-                    {location.pathname === "/" && (
-                        <li>
-                            <button onClick={logout}>
-                                Se déconnecter
-                                <LogoutIcon style={{ fontSize: "2rem" }} />
-                            </button>
-                        </li>
-                    )}
-                </ul>
-            </nav>
+                    <figcaption>Les meilleures critiques de sauce piquante du web !</figcaption>
+                </figure>
+            </h1>
+            {
+                location.pathname === "/piiquante/" && (
+                    <nav>
+                        <Link to="/piiquante/login" className="logout" onClick={logout}>
+                            <span>Se déconnecter</span>
+                            <LogoutIcon />
+                        </Link>
+                    </nav>
+                )
+            }
         </header>
     );
 }

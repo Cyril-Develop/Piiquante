@@ -2,11 +2,16 @@
 
 .connection{
     //direction justify align gap
-    @include flex(column, center, center, null);
-    padding: 0 1rem;
-    min-height: calc(100vh - 20rem);
+    @include flex(column, center, center, 10rem);
+    padding: 2rem 1rem;
+    min-height: calc(100vh - 25rem);
     background-color: $color-primary;
     position: relative;
+
+    h2{
+        font-size: clamp(2rem, 2vw, 3rem);
+        color: $color-primary;
+    }
 
     &_modal{
         position: absolute;
@@ -32,19 +37,17 @@
     }
     
     &_btn-guest{
-        position: absolute;
-        top: 5rem;
         font-family: 'Fjord One', serif;
         font-weight: 600;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-        margin-left: auto;
+        border-bottom: 1px solid $color-dark;
+        font-size: clamp(1.6rem, 1.8vw, 2rem);
     }
 
     &_form{
         //direction justify align gap
         @include flex(column, center, center, 1.5rem);
         width: 50%;
-        max-width: 550px;
+        max-width: 800px;
         padding: 5rem;
         background-color: $color-secondary;
         color: $color-primary;
@@ -75,22 +78,20 @@
                 @include flex(row, center, center, null);
                 top: 5rem;
                 right: 1rem;
-                padding: 0;
                 color: $color-dark;
             }
 
         }
         span{
-            font-size: clamp(1.6rem, 1.6vw, 1.6rem);
+            font-size: clamp(1.6rem, 1.6vw, 1.8rem);
             color: $color-tertiary;
-            font-family: 'Merriweather', serif;
         }
     
         &_btn_submit{
             height: 5rem;
             background-color: $color-dark;
             color: $color-primary;
-            font-family: 'Merriweather', serif;
+            padding: 1rem 2rem;
         }
 
         &_loader{
@@ -111,6 +112,31 @@
     
         .password{
             position: relative;
+        }
+    }
+
+    p{
+        font-weight: 600;
+
+        a{
+            position: relative;
+
+            &:hover{
+                &::before{
+                    width: 100%;
+                }
+            }
+
+            &::before{
+                content: '';
+                position: absolute;
+                bottom: -.3rem;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background-color: $color-dark;
+                transition: width .1s ease-in-out;
+            }
         }
     }
 }
