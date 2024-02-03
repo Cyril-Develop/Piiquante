@@ -43,7 +43,7 @@ export default function Login() {
         try {
             setLoading(true);
             const res = await axios.post(
-                `${process.env.REACT_APP_BASE_URL}/auth/login`,
+                `${import.meta.env.VITE_REACT_APP_BASE_URL}/auth/login`,
                 { email, password }
             );
             setCurrentUser(res.data);
@@ -62,8 +62,8 @@ export default function Login() {
     const handleGuestConnection = async e => {
         e.preventDefault();
         await handleLogin(
-            process.env.REACT_APP_GUEST_EMAIL,
-            process.env.REACT_APP_GUEST_MDP
+            import.meta.env.VITE_REACT_APP_GUEST_EMAIL,
+            import.meta.env.VITE_REACT_APP_GUEST_MDP
         );
     };
 

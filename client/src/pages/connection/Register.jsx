@@ -102,7 +102,7 @@ export default function Register() {
         try {
             setLoading(true);
             await axios.post(
-                `${process.env.REACT_APP_BASE_URL}/auth/signup`,
+                `${import.meta.env.VITE_REACT_APP_BASE_URL}/auth/signup`,
                 formValues
             );
             setFormValues(initialValues);
