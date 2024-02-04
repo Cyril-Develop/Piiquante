@@ -14,6 +14,7 @@ html {
 body {
     max-width: 1800px;
     margin: 0 auto;
+    background-color: $color-primary;
 }
 
 ul {
@@ -41,6 +42,5 @@ button {
     cursor: pointer;
     border: none;
     background-color: transparent;
-    font-family: 'Merriweather', serif;
     font-size: clamp(1.6rem, 1.6vw, 1.8rem);
 }

@@ -2,11 +2,20 @@
 
 .connection{
     //direction justify align gap
-    @include flex(column, center, center, 10rem);
+    @include flex(column, center, center, 5rem);
     padding: 2rem 1rem;
     min-height: calc(100vh - 25rem);
     background-color: $color-primary;
     position: relative;
+
+    @media screen and (max-width: 790px){
+        padding: 1rem 1rem 2rem;
+        min-height: calc(100vh - 20rem);
+    }
+
+    @media screen and (max-width: 500px){
+        gap: 3rem;
+    }
 
     h2{
         font-size: clamp(2rem, 2vw, 3rem);
@@ -39,7 +48,7 @@
     &_btn-guest{
         font-family: 'Fjord One', serif;
         font-weight: 600;
-        border-bottom: 1px solid $color-dark;
+        border-bottom: 2px solid $color-dark;
         font-size: clamp(1.6rem, 1.8vw, 2rem);
     }
 
@@ -52,6 +61,15 @@
         background-color: $color-secondary;
         color: $color-primary;
         @include tornCard;
+
+        @media screen and (max-width: 790px){
+            width: 80%;
+        }
+
+        @media screen and (max-width: 500px){
+            width: 100%;
+            padding: 3rem 2rem;
+        }
 
         &_group{
             //direction justify align gap
@@ -70,6 +88,10 @@
                 background-color: $color-primary;
                 font-size: clamp(1.6rem, 1.8vw, 1.8rem);
                 border: 1px solid rgba(0, 0, 0, 0.2);
+
+                @media screen and (max-width: 500px){
+                    height: 4rem;
+                }
             }
     
             &_btn{
@@ -79,19 +101,21 @@
                 top: 5rem;
                 right: 1rem;
                 color: $color-dark;
+
+                @media screen and (max-width: 500px){
+                    top: 4.5rem;
+                }
             }
 
         }
         span{
             font-size: clamp(1.6rem, 1.6vw, 1.8rem);
             color: $color-tertiary;
+            text-align: center;
         }
     
         &_btn_submit{
-            height: 5rem;
-            background-color: $color-dark;
-            color: $color-primary;
-            padding: 1rem 2rem;
+            @include btn;
         }
 
         &_loader{
@@ -116,27 +140,16 @@
     }
 
     p{
+        text-align: center;
         font-weight: 600;
 
+        @media screen and (max-width: 500px){
+            display: flex;
+            flex-direction: column;
+        }
+
         a{
-            position: relative;
-
-            &:hover{
-                &::before{
-                    width: 100%;
-                }
-            }
-
-            &::before{
-                content: '';
-                position: absolute;
-                bottom: -.3rem;
-                left: 0;
-                width: 0;
-                height: 2px;
-                background-color: $color-dark;
-                transition: width .1s ease-in-out;
-            }
+            @include link-hover;
         }
     }
 }

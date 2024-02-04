@@ -1,6 +1,6 @@
 @import '../../sass/index.scss';
 
-.header{
+.header {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -11,34 +11,26 @@
     padding: 1rem 0;
     background-color: $color-primary;
 
-    h1{
-        width: 100%;
-        figure {
-            img {
-                width: clamp(10rem, 25vw, 32rem);
-            }
-    
-            figcaption {
-                font-size: clamp(2rem, 2.5vw, 3rem);
-                color: $color-primary;
-                background-color: $color-dark;
-                padding: 1rem;
-                transform: rotate(-1deg);
-            }
-        }
+    @media screen and (max-width: 790px) {
+        height: 20rem;
+        padding: 0;
     }
 
-    nav{
-        display: flex;
-        justify-content: flex-end;
+    h1 {
         width: 100%;
-        padding: 0 2rem;
-        font-weight: 600;
 
-        a{
-            display: flex;
-            align-items: center;
-            gap: .5rem;
+        figure {
+            img {
+                width: clamp(20rem, 25vw, 32rem);
+            }
+
+            figcaption {
+                font-size: clamp(1.8rem, 2.5vw, 3rem);
+                color: $color-primary;
+                background-color: $color-dark;
+                padding: 1rem 2rem;
+                transform: rotate(-1deg) skew(-1deg);
+            }
         }
     }
 }

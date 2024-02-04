@@ -1,0 +1,38 @@
+@import "../../sass/index.scss";
+
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 0 2rem;
+    font-weight: 600;
+
+    @media screen and (max-width: 790px){
+        padding: 0 1rem;
+    }
+
+    @media screen and (max-width: 500px){
+        justify-content: unset;
+    }
+
+    ul{
+        display: flex;
+        gap: 3rem;
+        
+        @media screen and (max-width: 500px){
+            width: 100%;
+            justify-content: space-between;
+            gap: 0;
+        }
+
+        li {
+            button, a{
+                display: flex;
+                align-items: center;
+                gap: .5rem;
+                font-weight: 600;
+                @include link-hover;
+            }
+        }
+    }
+}

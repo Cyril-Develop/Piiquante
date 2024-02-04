@@ -1,14 +1,12 @@
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import "./header.scss";
 import Logo from "../../images/logo.png";
-import LogoutIcon from "@mui/icons-material/Logout";
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import Navbar from "../navbar/Navbar";
 
 export default function Header() {
-    const location = useLocation();
-    const { logout } = useContext(AuthContext);
 
+    const location = useLocation();
+    
     return (
         <header className="header">
             <h1>
@@ -19,12 +17,7 @@ export default function Header() {
             </h1>
             {
                 location.pathname === "/piiquante/" && (
-                    <nav>
-                        <Link to="/piiquante/login" className="logout" onClick={logout}>
-                            <span>Se déconnecter</span>
-                            <LogoutIcon />
-                        </Link>
-                    </nav>
+                    <Navbar />
                 )
             }
         </header>

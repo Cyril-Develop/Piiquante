@@ -96,9 +96,9 @@ export default function Login() {
                         onClick={(e) => togglePassword(e)}
                     >
                         {passwordShown ? (
-                            <VisibilityOffIcon style={{ fontSize: "2rem" }} />
+                            <VisibilityOffIcon style={{ fontSize: "clamp(1.6rem, 2vw, 2rem)" }} />
                         ) : (
-                            <VisibilityIcon style={{ fontSize: "2rem" }} />
+                            <VisibilityIcon style={{ fontSize: "clamp(1.6rem, 2vw, 2rem)" }} />
                         )}
                     </button>
                 </div>
