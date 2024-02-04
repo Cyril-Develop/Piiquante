@@ -1,6 +1,6 @@
 @import '../../sass/index.scss';
 
-.connection{
+.connection {
     //direction justify align gap
     @include flex(column, center, center, 5rem);
     padding: 2rem 1rem;
@@ -8,21 +8,23 @@
     background-color: $color-primary;
     position: relative;
 
-    @media screen and (max-width: 790px){
+    @media screen and (max-width: 790px) {
         padding: 1rem 1rem 2rem;
         min-height: calc(100vh - 20rem);
+        justify-content: flex-start;
     }
 
-    @media screen and (max-width: 500px){
+    @media screen and (max-width: 500px) {
         gap: 3rem;
     }
 
-    h2{
+    h2 {
         font-size: clamp(2rem, 2vw, 3rem);
         color: $color-primary;
+        letter-spacing: .1rem;
     }
 
-    &_modal{
+    &_modal {
         position: absolute;
         top: 2rem;
         background-color: #005800;
@@ -44,57 +46,57 @@
             }
         }
     }
-    
-    &_btn-guest{
+
+    &_btn-guest {
         font-family: 'Fjord One', serif;
         font-weight: 600;
         border-bottom: 2px solid $color-dark;
         font-size: clamp(1.6rem, 1.8vw, 2rem);
     }
 
-    &_form{
+    &_form {
         //direction justify align gap
         @include flex(column, center, center, 1.5rem);
-        width: 50%;
+        width: 70%;
         max-width: 800px;
         padding: 5rem;
         background-color: $color-secondary;
         color: $color-primary;
         @include tornCard;
 
-        @media screen and (max-width: 790px){
+        @media screen and (max-width: 790px) {
             width: 80%;
         }
 
-        @media screen and (max-width: 500px){
+        @media screen and (max-width: 500px) {
             width: 100%;
             padding: 3rem 2rem;
         }
 
-        &_group{
+        &_group {
             //direction justify align gap
             @include flex(column, null, null, 1rem);
             width: 100%;
-            font-size: clamp(1.6rem, 2vw, 2rem);
+            font-size: clamp(1.8rem, 2vw, 2rem);
 
-            label{
+            label {
                 display: flex;
                 justify-content: space-between;
             }
-            
-            input{
+
+            input {
                 height: 5rem;
                 padding-left: 1rem;
                 background-color: $color-primary;
                 font-size: clamp(1.6rem, 1.8vw, 1.8rem);
                 border: 1px solid rgba(0, 0, 0, 0.2);
 
-                @media screen and (max-width: 500px){
+                @media screen and (max-width: 500px) {
                     height: 4rem;
                 }
             }
-    
-            &_btn{
+
+            &_btn {
                 position: absolute;
                 //direction justify align gap
                 @include flex(row, center, center, null);
@@ -102,23 +104,23 @@
                 right: 1rem;
                 color: $color-dark;
 
-                @media screen and (max-width: 500px){
+                @media screen and (max-width: 500px) {
                     top: 4.5rem;
                 }
             }
-
         }
-        span{
+
+        span {
             font-size: clamp(1.6rem, 1.6vw, 1.8rem);
             color: $color-tertiary;
-            text-align: center;
+
         }
-    
-        &_btn_submit{
+
+        &_btn_submit {
             @include btn;
         }
 
-        &_loader{
+        &_loader {
             width: 4rem;
             height: 4rem;
             border-radius: 50%;
@@ -133,22 +135,22 @@
                 transform: rotate(360deg);
             }
         }
-    
-        .password{
+
+        .password {
             position: relative;
         }
     }
 
-    p{
+    p {
         text-align: center;
         font-weight: 600;
 
-        @media screen and (max-width: 500px){
+        @media screen and (max-width: 500px) {
             display: flex;
             flex-direction: column;
         }
 
-        a{
+        a {
             @include link-hover;
         }
     }

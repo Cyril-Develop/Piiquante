@@ -208,7 +208,6 @@ export default function Register() {
                 {loading && <div className="connection_form_loader"></div>}
                 {!loading && formError.empty && <span>{formError.empty}</span>}
                 {!loading && !formError.empty && badSubmit && <span>{badSubmit}</span>}
-
             </form>
             <p>Vous possédez déjà un compte ? <Link to={"/piiquante/login"}>Se connecter</Link></p>
         </main>
