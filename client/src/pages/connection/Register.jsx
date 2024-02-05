@@ -110,10 +110,15 @@ export default function Register() {
             setUserCreated(true);
         } catch (err) {
             console.log(err);
-            if (err.response.status === 400) {
-                setBadSubmit("Email déjà utilisé");
-            } else {
-                setBadSubmit("Merci de réessayer plus tard");
+            switch(err.code) {
+                case "ERR_NETWORK":
+                    setBadSubmit("Oups, une erreur est survenue");
+                    break;
+                case "ERR_BAD_REQUEST":
+                    setBadSubmit("Email déjà utilisé");
+                    break;
+                default:
+                    setBadSubmit("Merci de réessayer plus tard");
             }
         } finally {
             setLoading(false);

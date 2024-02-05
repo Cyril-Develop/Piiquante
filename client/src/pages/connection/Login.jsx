@@ -50,10 +50,15 @@ export default function Login() {
             navigate("/piiquante/");
         } catch (err) {
             console.log(err);
-            if (err.response.status === 401) {
-                setError("Email ou mot de passe incorrect");
-            } else {
-                setError("Merci de réessayer plus tard");
+            switch(err.code) {
+                case "ERR_NETWORK":
+                    setError("Oups, une erreur est survenue");
+                    break;
+                case "ERR_BAD_REQUEST":
+                    setError("Email ou mot de passe incorrect");
+                    break;
+                default:
+                    setError("Merci de réessayer plus tard");
             }
         } finally {
             setLoading(false);
