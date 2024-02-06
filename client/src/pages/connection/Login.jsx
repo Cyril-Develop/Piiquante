@@ -5,6 +5,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import Loader from "../../components/loader/Loader";
 
 export default function Login() {
     const { setCurrentUser } = useContext(AuthContext);
@@ -110,7 +111,7 @@ export default function Login() {
                 <button className="connection_form_btn_submit" type="submit">
                     Se connecter
                 </button>
-                {loading && <div className="connection_form_loader"></div>}
+                {loading && <Loader/>}
                 {!loading && error && <span>{error}</span>}
 
             </form>

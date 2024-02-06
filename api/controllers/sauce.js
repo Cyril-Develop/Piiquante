@@ -22,7 +22,7 @@ exports.createSauce = (req, res) => {
         dislikes: 0,
         usersLiked: [],
         usersDisliked: [],
-        imageUrl : `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        imageUrl : `${req.protocol}://${req.get('host')}/piiquante/api/images/${req.file.filename}`
     });
     sauce.save()
         .then(() => {res.status(201).json({message: 'Sauce enregistrée !'})})

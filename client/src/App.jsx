@@ -7,6 +7,7 @@ import Home from './pages/home/Home';
 import Login from './pages/connection/Login';
 import Register from './pages/connection/Register';
 import NotFound from './pages/notFound/NotFound';
+import Sauce from './pages/sauce/Sauce';
 
 export default function App() {
 
@@ -48,6 +49,10 @@ export default function App() {
                 {
                     path: "/piiquante/register",
                     element: <Register />
+                },
+                {
+                    path: "/piiquante/:id",
+                    element: <Sauce />
                 }
             ]
         },

@@ -3,4 +3,17 @@
 .home{
     background-color: $color-primary;
     min-height: calc(100vh - 25rem);
+    padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+
+    @media screen and (max-width: 790px) {
+        padding: 0rem 1rem 2rem;
+    }
+
+    &_error{
+        font-size: clamp(2rem, 2vw, 3rem);
+        color: $color-secondary;
+    }
 }
