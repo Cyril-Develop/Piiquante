@@ -2,9 +2,9 @@
 
 .home{
     background-color: $color-primary;
-    min-height: calc(100vh - 25rem);
     padding: 2rem;
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
     gap: 2rem;
 
