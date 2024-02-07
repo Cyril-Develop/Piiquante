@@ -1,11 +1,10 @@
-import { useState, useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
-import "./connection.scss";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { useNavigate, Link } from "react-router-dom";
-import axios from "axios";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
+import { AuthContext } from "../../context/AuthContext";
+import "./connection.scss";
 
 export default function Login() {
     const { setCurrentUser } = useContext(AuthContext);
@@ -43,23 +42,26 @@ export default function Login() {
     const handleLogin = async (email, password) => {
         try {
             setLoading(true);
-            const res = await axios.post(
-                `${import.meta.env.VITE_REACT_APP_BASE_URL}/auth/login`,
-                { email, password }
-            );
-            setCurrentUser(res.data);
+            const response = await fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/auth/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            });
+            if (!response.ok) {
+                const error = await response.json();
+                throw error;
+            }
+            const data = await response.json();
+            setCurrentUser(data);
             navigate("/piiquante/");
         } catch (err) {
             console.log(err);
-            switch(err.code) {
-                case "ERR_NETWORK":
-                    setError("Oups, une erreur est survenue");
-                    break;
-                case "ERR_BAD_REQUEST":
-                    setError("Email ou mot de passe incorrect");
-                    break;
-                default:
-                    setError("Merci de réessayer plus tard");
+            if(err?.message === "Informations erronées !") {
+                setError("Email ou mot de passe incorrect");
+            } else {
+                setError("Merci de réessayer plus tard");
             }
         } finally {
             setLoading(false);
@@ -111,7 +113,7 @@ export default function Login() {
                 <button className="connection_form_btn_submit" type="submit">
                     Se connecter
                 </button>
-                {loading && <Loader/>}
+                {loading && <Loader />}
                 {!loading && error && <span>{error}</span>}
 
             </form>

@@ -1,9 +1,8 @@
-import "./connection.scss";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import "./connection.scss";
 
 export default function Register() {
     const [passwordShown, setPasswordShown] = useState(false);
@@ -102,28 +101,31 @@ export default function Register() {
     const submitForm = async () => {
         try {
             setLoading(true);
-            await axios.post(
-                `${import.meta.env.VITE_REACT_APP_BASE_URL}/auth/signup`,
-                formValues
-            );
+            const response = await fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/auth/signup`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formValues)
+            });
+            if (!response.ok) {
+                const error = await response.json();
+                throw error;
+            };
             setFormValues(initialValues);
             setUserCreated(true);
         } catch (err) {
             console.log(err);
-            switch(err.code) {
-                case "ERR_NETWORK":
-                    setBadSubmit("Oups, une erreur est survenue");
-                    break;
-                case "ERR_BAD_REQUEST":
-                    setBadSubmit("Email déjà utilisé");
-                    break;
-                default:
-                    setBadSubmit("Merci de réessayer plus tard");
+            if (err?.error) {
+                setBadSubmit("Email déjà utilisé");
+            } else {
+                setBadSubmit("Merci de réessayer plus tard");
             }
         } finally {
             setLoading(false);
         }
-    }
+    };
+
 
     useEffect(() => {
         if (userCreated) {

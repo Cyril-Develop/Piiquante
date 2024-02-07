@@ -1,8 +1,7 @@
-import './home.scss';
 import { useQuery } from '@tanstack/react-query';
-import { AuthContext } from '../../context/AuthContext';
 import { useContext } from 'react';
-import axios from 'axios';
+import { AuthContext } from '../../context/AuthContext';
+import './home.scss';
 import Card from '../../components/card/Card';
 import Loader from "../../components/loader/Loader";
 
@@ -14,13 +13,11 @@ export default function Home() {
     const { isLoading, error, data } = useQuery({
         queryKey: ['sauces'],
         queryFn: () =>
-            axios.get(`${import.meta.env.VITE_REACT_APP_BASE_URL}/sauces`, {
+            fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/sauces`, {
                 headers: {
-                    'authorization': `bearer ${token}`
+                    "authorization": `bearer ${token}`
                 }
-            }).then(res => {
-                return res.data;
-            })
+            }).then(res => res.json())
     });
 
     return (
