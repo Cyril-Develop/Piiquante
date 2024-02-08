@@ -2,11 +2,11 @@
 
 .home{
     background-color: $color-primary;
-    padding: 2rem;
+    padding: 4rem;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 4rem;
 
     @media screen and (max-width: 790px) {
         padding: 0rem 1rem 2rem;
