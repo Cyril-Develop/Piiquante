@@ -51,7 +51,7 @@ export default function App() {
                     element: <Register />
                 },
                 {
-                    path: "/piiquante/:id",
+                    path: "/piiquante/sauce/:id",
                     element: <Sauce />
                 }
             ]

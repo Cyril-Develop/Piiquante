@@ -5,7 +5,7 @@ export default function Card({ content }) {
 
     return (
         <article className='card'>
-            <Link to={`/piiquante/${content._id}`} className='card_link'>
+            <Link to={`/piiquante/sauce/${content._id}`} className='card_link'>
                 <div className='card_link_img'>
                     <img src={content.imageUrl} alt={content.name} />
                 </div>
