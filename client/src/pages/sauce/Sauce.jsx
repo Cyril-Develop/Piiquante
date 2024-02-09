@@ -35,27 +35,53 @@ export default function Sauce() {
                         <p>Piquant : {data.heat} / 10</p>
                     </div>
                     <div className="sauce_wrapper_content">
-                        <h2>{data.name}</h2>
-                        <p>{data.manufacturer}</p>
+                        <div className="sauce_wrapper_content_title">
+                            <h2>- {data.name} -</h2>
+                            <p>{data.manufacturer}</p>
+                        </div>
+                        <p className="sauce_wrapper_content_ingredients">
+                            {data.mainIngredients.length > 1
+                                ? "|Ingrédients : "
+                                : "|Ingrédient : "}
+                            {data.mainIngredients.map((ingredient, index) => {
+                                if (index === data.mainIngredients.length - 1) {
+                                    return ingredient;
+                                } else {
+                                    return ingredient + ", ";
+                                }
+                            })}
+                            .
+                        </p>
+
                         <p>{data.description}</p>
                         <div className="sauce_wrapper_content_likes">
                             <div>
                                 <button>
-                                    <ThumbUpAltIcon sx={{color: "#7451eb"}}/>
+                                    <ThumbUpAltIcon sx={{ color: "#7451eb" }} />
                                 </button>
                                 <p>{data.likes}</p>
                             </div>
                             <div>
                                 <button>
-                                    <ThumbDownAltIcon sx={{color: "#be171a"}}/>
+                                    <ThumbDownAltIcon
+                                        sx={{ color: "#be171a" }}
+                                    />
                                 </button>
                                 <p>{data.dislikes}</p>
                             </div>
                         </div>
-                        {currentUser.userId === data.userId && (
-                            <div className="sauce_wrapper_content_actions">
+                        {currentUser.userId === data.userId ? (
+                            <div className="sauce_wrapper_content_update">
                                 <button>Modifier</button>
-                                <button>Supprimer</button>
+                            </div>
+                        ) : (
+                            <div className="sauce_wrapper_content_user">
+                                <p>
+                                    Publié par :{" "}
+                                    <span>
+                                        {data.userFirstname} {data.userLastname}
+                                    </span>
+                                </p>
                             </div>
                         )}
                     </div>

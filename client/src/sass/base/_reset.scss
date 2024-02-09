@@ -38,6 +38,10 @@ p, span{
     font-size: clamp(1.6rem, 1.6vw, 1.8rem);
 }
 
+input,textarea{
+    font-family: 'Fjord One', serif;
+}
+
 button {
     cursor: pointer;
     border: none;
