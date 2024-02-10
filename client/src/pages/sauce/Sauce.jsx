@@ -72,7 +72,7 @@ export default function Sauce() {
                         </div>
                         {currentUser.userId === data.userId ? (
                             <div className="sauce_wrapper_content_update">
-                                <button>Modifier</button>
+                                <button>Modifier</button> 
                             </div>
                         ) : (
                             <div className="sauce_wrapper_content_user">

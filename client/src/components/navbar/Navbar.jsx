@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import AddIcon from "@mui/icons-material/Add";
 import CreateSauce from "../createSauce/CreateSauce";
+import HomeIcon from "@mui/icons-material/Home";
 
 export default function Nav() {
     const { logout } = useContext(AuthContext);
@@ -20,10 +21,16 @@ export default function Nav() {
                         onClick={() => setOpenModal(true)}
                     >
                         Ajouter une sauce
-                        <AddIcon
-                            style={{ fontSize: "clamp(1.6rem, 1.6vw, 1.8rem)" }}
-                        />
+                        <AddIcon />
                     </button>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <Link to="/piiquante/" aria-label="Accueil">
+                        <span>Accueil </span>
+                        <HomeIcon />
+                    </Link>
                 </li>
                 <li>
                     <Link
@@ -33,9 +40,7 @@ export default function Nav() {
                         onClick={logout}
                     >
                         <span>Se déconnecter</span>
-                        <LogoutIcon
-                            style={{ fontSize: "clamp(1.6rem, 1.6vw, 1.8rem)" }}
-                        />
+                        <LogoutIcon />
                     </Link>
                 </li>
             </ul>

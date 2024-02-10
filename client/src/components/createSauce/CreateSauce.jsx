@@ -1,5 +1,6 @@
 import "./createSauce.scss";
 import CloseIcon from "@mui/icons-material/Close";
+import ImageIcon from '@mui/icons-material/Image';
 
 export default function CreateSauce({ setOpenModal }) {
 
@@ -33,7 +34,7 @@ export default function CreateSauce({ setOpenModal }) {
                         <input type="text" id="ingredient" />
                     </div>
                     <div className="modal_content_form_image">
-                        <label htmlFor="image" id="select">Sélectionner une image</label>
+                        <label htmlFor="image" id="select">Sélectionner une image <ImageIcon/> </label>
                         <input type="file" id="image" />
                         <div id="preview">
                             <p>Aucune photo</p>
@@ -42,7 +43,7 @@ export default function CreateSauce({ setOpenModal }) {
                     </div>
                     <div className="modal_content_form_group">
                         <label htmlFor="heat">Piquant <span>1 / 10</span></label>
-                        <input type="range" id="heat" min={1} max={10} />
+                        <input type="range" id="heat" min={1} max={10}/>
                     </div>
                     <button type="submit">Confirmer</button>
                 </form>
