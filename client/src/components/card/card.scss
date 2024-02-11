@@ -9,59 +9,39 @@
     overflow: hidden;
     border: 1px solid rgba(128, 128, 128, 0.2);
 
-    &_delete{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        top: 0;
-        right: 0;
-        padding: .5rem;
-        background-color: $color-primary;
-        border-bottom-left-radius: .5rem;
-
-        &:hover{
-            color: $color-secondary;
-        }
-        
-        svg{
-            font-size: clamp(2rem, 2.5vw, 3rem);
-        }
-    }
-
-    &_link{
+    &_link {
         display: flex;
         flex-direction: column;
         height: 100%;
         width: 100%;
 
-        &_img{
+        &_img {
             height: 85%;
             background-color: $color-dark;
 
-            img{
+            img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
                 object-position: center;
             }
         }
-        
-        &_infos{
+
+        &_infos {
             flex-grow: 1;
             background-color: $color-dark;
             color: $color-primary;
             padding: 1rem;
             text-align: center;
 
-            h2{
+            h2 {
                 font-size: clamp(2rem, 2vw, 2rem);
                 font-weight: 400;
                 letter-spacing: .1rem;
                 text-transform: uppercase;
             }
 
-            p{
+            p {
                 font-size: clamp(1.8rem, 1.8vw, 1.8rem);
                 text-transform: capitalize;
             }

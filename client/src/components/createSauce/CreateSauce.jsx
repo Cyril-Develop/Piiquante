@@ -27,7 +27,7 @@ export default function CreateSauce({ setOpenModal }) {
     const [formError, setFormError] = useState({});
     const [submitted, setSubmitted] = useState(false);
 
-    const handleChange = (e) => {
+    const handleChange = e => {
         const { name, value, files } = e.target;
         if (name === 'image' && files.length > 0) {
             formData.set(name, files[0]);
@@ -55,7 +55,7 @@ export default function CreateSauce({ setOpenModal }) {
 
         if (values.description && values.description.length < 50 || values.description.length > 400) {
             error.description = SAUCE_FIELD_VALIDATION.description;
-        }        
+        }
 
         if (values.ingredient && !/^[A-Za-z\d\s]{5,30}$/.test(values.ingredient)) {
             error.ingredient = SAUCE_FIELD_VALIDATION.ingredient;
@@ -74,7 +74,7 @@ export default function CreateSauce({ setOpenModal }) {
         }
     }, [formError, submitted]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = e => {
         e.preventDefault();
         setFormError(checkFields(formValues));
         setSubmitted(true);
@@ -109,7 +109,7 @@ export default function CreateSauce({ setOpenModal }) {
             setOpenModal(false);
             setFormValues(initialValues);
         },
-        onError: (error) => {
+        onError: error => {
             console.log("Erreur lors de l'ajout de la sauce", error);
         }
     });

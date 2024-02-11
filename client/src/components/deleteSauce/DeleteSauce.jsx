@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useQueryClient } from "@tanstack/react-query";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import "./deleteSauce.scss";
 
 export default function DeleteSauce({ id }) {
     const { currentUser } = useContext(AuthContext);
@@ -30,7 +31,7 @@ export default function DeleteSauce({ id }) {
     };
 
     return (
-        <button className="card_delete" onClick={handleDelete}>
+        <button className="delete" onClick={handleDelete}>
             <DeleteForeverIcon />
         </button>
     );

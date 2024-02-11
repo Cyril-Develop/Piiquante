@@ -1,0 +1,26 @@
+.like {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    button {
+      display: flex;
+      align-items: center;
+
+      svg {
+        font-size: clamp(1.8rem, 2vw, 2.5rem);
+      }
+    }
+
+    p {
+      font-size: clamp(1.8rem, 2vw, 2.5rem);
+    }
+  }
+
+}

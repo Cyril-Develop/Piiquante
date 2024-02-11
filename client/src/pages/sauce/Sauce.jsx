@@ -1,13 +1,12 @@
 import "./sauce.scss";
-import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
-import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
-import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
-import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../../components/loader/Loader";
+import Like from "../../components/like/Like";
+import UpdateSauce from "../../components/updateSauce/UpdateSauce";
+import Author from "../../components/author/Author";
 
 export default function Sauce() {
     const { id } = useParams();
@@ -44,46 +43,18 @@ export default function Sauce() {
                                 ? "|Ingrédients : "
                                 : "|Ingrédient : "}
                             {data.mainIngredients.map((ingredient, index) => {
-                                if (index === data.mainIngredients.length - 1) {
-                                    return ingredient;
-                                } else {
-                                    return ingredient + ", ";
-                                }
-                            })}
-                            .
+                                return index === data.mainIngredients.length - 1 ?
+                                    ingredient :
+                                    ingredient + ", ";
+                            })}.
                         </p>
-
                         <p>{data.description}</p>
-                        <div className="sauce_wrapper_content_likes">
-                            <div>
-                                <button>
-                                    <ThumbUpAltIcon sx={{ color: "#7451eb" }} />
-                                </button>
-                                <p>{data.likes}</p>
-                            </div>
-                            <div>
-                                <button>
-                                    <ThumbDownAltIcon
-                                        sx={{ color: "#be171a" }}
-                                    />
-                                </button>
-                                <p>{data.dislikes}</p>
-                            </div>
-                        </div>
-                        {currentUser.userId === data.userId ? (
-                            <div className="sauce_wrapper_content_update">
-                                <button>Modifier</button> 
-                            </div>
-                        ) : (
-                            <div className="sauce_wrapper_content_user">
-                                <p>
-                                    Publié par :
-                                    <span>
-                                        {data.userFirstname} {data.userLastname}
-                                    </span>
-                                </p>
-                            </div>
-                        )}
+                        <Like like={data.likes} dislike={data.dislikes} />
+                        {currentUser.userId === data.userId ?
+                            <UpdateSauce />
+                            :
+                            <Author userLastname={data.userLastname} userFirstname={data.userFirstname} />
+                        }
                     </div>
                 </article>
             )}

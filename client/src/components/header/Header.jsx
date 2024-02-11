@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import "./header.scss";
-import Logo from "../../images/logo.png";
+import Logo from "../../assets/logo.png";
 import Navbar from "../navbar/Navbar";
 
 export default function Header() {

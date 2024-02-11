@@ -1,0 +1,21 @@
+@import '../../sass/index.scss';
+
+.delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: .5rem;
+  background-color: $color-primary;
+  border-bottom-left-radius: .5rem;
+
+  &:hover {
+    color: $color-secondary;
+  }
+
+  svg {
+    font-size: clamp(2rem, 2.5vw, 3rem);
+  }
+}

@@ -25,10 +25,12 @@
 
             p {
                 flex-grow: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 background-color: $color-dark;
                 color: $color-primary;
                 padding: 1rem;
-                text-align: center;
             }
         }
 
@@ -52,62 +54,6 @@
 
             &_ingredients {
                 text-transform: capitalize;
-            }
-
-            &_likes {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 2rem;
-
-                div {
-                    display: flex;
-                    align-items: center;
-                    gap: 0.5rem;
-
-                    button {
-                        display: flex;
-                        align-items: center;
-
-                        svg {
-                            font-size: clamp(1.8rem, 2vw, 2.5rem);
-                        }
-                    }
-
-                    p {
-                        font-size: clamp(1.8rem, 2vw, 2.5rem);
-                    }
-                }
-            }
-
-            &_update {
-                display: flex;
-                justify-content: center;
-                gap: 2rem;
-
-                button {
-                    padding: 1rem 2rem;
-                    letter-spacing: .1rem;
-                    border-radius: 5px;
-                    background-color: #7451eb;
-                    color: $color-primary;
-                }
-            }
-
-            &_user {
-                display: flex;
-                justify-content: flex-end;
-                font-size: clamp(1.4rem, 1.6vw, 1.6rem);
-
-                p {
-                    display: flex;
-
-                    span {
-                        display: flex;
-                        gap: 1rem;
-                        font-style: italic;
-                    }
-                }
             }
         }
     }

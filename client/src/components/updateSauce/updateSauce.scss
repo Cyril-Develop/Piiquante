@@ -1,0 +1,15 @@
+@import '../../sass/index.scss';
+
+.updateSauce{
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+
+    button {
+        padding: 1rem 2rem;
+        letter-spacing: .1rem;
+        border-radius: 5px;
+        background-color: #7451eb;
+        color: $color-primary;
+    }
+}
