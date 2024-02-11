@@ -3,7 +3,7 @@
 .card {
     position: relative;
     display: flex;
-    width: 23%;
+    // width: 23%;
     max-height: 50rem;
     border-radius: .5rem;
     overflow: hidden;
@@ -14,8 +14,11 @@
         justify-content: center;
         align-items: center;
         position: absolute;
-        top: 1rem;
-        right: 1rem;
+        top: 0;
+        right: 0;
+        padding: .5rem;
+        background-color: $color-primary;
+        border-bottom-left-radius: .5rem;
 
         &:hover{
             color: $color-secondary;
@@ -45,21 +48,21 @@
         }
         
         &_infos{
-            height: 15%;
+            flex-grow: 1;
             background-color: $color-dark;
             color: $color-primary;
             padding: 1rem;
             text-align: center;
 
             h2{
-                font-size: clamp(2rem, 2vw, 2.2rem);
+                font-size: clamp(2rem, 2vw, 2rem);
                 font-weight: 400;
                 letter-spacing: .1rem;
                 text-transform: uppercase;
             }
 
             p{
-                font-size: clamp(1.8rem, 1.8vw, 2rem);
+                font-size: clamp(1.8rem, 1.8vw, 1.8rem);
                 text-transform: capitalize;
             }
         }

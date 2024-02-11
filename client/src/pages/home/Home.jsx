@@ -27,8 +27,13 @@ export default function Home() {
                     Impossible de charger le contenu...
                 </p>
             )}
-            {data &&
-                data.map((sauce) => <Card key={sauce._id} content={sauce} />)}
+            {data?.length === 0 ? (
+                <p className="home_error">Aucune sauce à afficher</p>
+            ) : (
+                data &&
+                data.map((sauce) => <Card key={sauce._id} content={sauce} />)
+            
+            )}
         </main>
     );
 }

@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
 import { AuthContext } from "../../context/AuthContext";
 import "./connection.scss";
+import AuthService from "../../services/AuthService";
+import { ERROR_MESSAGES } from "../../utils/errorMessages";
 
 export default function Login() {
     const { setCurrentUser } = useContext(AuthContext);
@@ -14,54 +16,37 @@ export default function Login() {
     const [passwordShown, setPasswordShown] = useState(false);
     const navigate = useNavigate();
 
-    const togglePassword = e => {
-        e.preventDefault();
-        setPasswordShown(!passwordShown);
-    };
-
     const loginAsUser = async e => {
         e.preventDefault();
-
+    
         const form = e.target;
-        const elements = form.elements;
-        const email = elements.email.value;
-        const password = elements.password.value;
-
+        const email = form.elements.email.value;
+        const password = form.elements.password.value;
+    
+        if (!email || !password) {
+            setError(ERROR_MESSAGES.emptyFields);
+            return;
+        }
+    
         try {
-            if (email && password) {
-                await handleLogin(email, password);
-            } else {
-                setError("Veuillez remplir tous les champs");
-            }
+            await handleLogin(email, password);
         } catch (err) {
-            console.log(err);
-            setError("Merci de réessayer plus tard");
+            setError(ERROR_MESSAGES.tryAgainLater);
         }
     };
-
+    
     const handleLogin = async (email, password) => {
         try {
             setLoading(true);
-            const response = await fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/auth/login`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email, password })
-            });
-            if (!response.ok) {
-                const error = await response.json();
-                throw error;
-            }
-            const data = await response.json();
+            const data = await AuthService.login(email, password);
             setCurrentUser(data);
             navigate("/piiquante/");
         } catch (err) {
             console.log(err);
-            if(err?.message === "Informations erronées !") {
-                setError("Email ou mot de passe incorrect");
+            if (err?.message === "Informations erronées !") {
+                setError(ERROR_MESSAGES.incorrectCredentials);
             } else {
-                setError("Merci de réessayer plus tard");
+                setError(ERROR_MESSAGES.tryAgainLater);
             }
         } finally {
             setLoading(false);
@@ -101,7 +86,8 @@ export default function Login() {
                     <button
                         className="connection_form_group_btn"
                         aria-label="Voir le mot de passe"
-                        onClick={(e) => togglePassword(e)}
+                        type="button"
+                        onClick={() => setPasswordShown(!passwordShown)}
                     >
                         {passwordShown ? (
                             <VisibilityOffIcon style={{ fontSize: "clamp(1.6rem, 2vw, 2rem)" }} />

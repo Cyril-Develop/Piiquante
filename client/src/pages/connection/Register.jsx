@@ -3,6 +3,8 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./connection.scss";
+import AuthService from "../../services/AuthService";
+import { ERROR_MESSAGES, AUTH_FIELD_VALIDATION } from "../../utils/errorMessages";
 
 export default function Register() {
     const [passwordShown, setPasswordShown] = useState(false);
@@ -16,14 +18,14 @@ export default function Register() {
         lastname: "",
         firstname: "",
         email: "",
-        password: "",
+        password: ""
     };
 
     const [formValues, setFormValues] = useState(initialValues);
 
-    const togglePassword = (e) => {
-        e.preventDefault();
-        setPasswordShown(!passwordShown);
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormValues({ ...formValues, [name]: value });
     };
 
     const checkFields = (values) => {
@@ -35,7 +37,7 @@ export default function Register() {
             !values.email ||
             !values.password
         ) {
-            error.empty = "Veuillez remplir tous les champs";
+            error.empty = ERROR_MESSAGES.emptyFields;
         }
 
         if (
@@ -45,7 +47,7 @@ export default function Register() {
             )
         ) {
             error.lastname =
-                "3 à 15 caractères, chiffres et caractères spéciaux différents de - non autorisés";
+            AUTH_FIELD_VALIDATION.lastname;
         }
 
         if (
@@ -55,7 +57,7 @@ export default function Register() {
             )
         ) {
             error.firstname =
-                "3 à 15 caractères, chiffres et caractères spéciaux différents de - non autorisés";
+            AUTH_FIELD_VALIDATION.firstname;
         }
 
         if (
@@ -64,7 +66,7 @@ export default function Register() {
                 values.email
             )
         ) {
-            error.email = "Format email incorrect";
+            error.email = AUTH_FIELD_VALIDATION.email;
         }
 
         if (
@@ -74,15 +76,10 @@ export default function Register() {
             )
         ) {
             error.password =
-                "8 à 30 caractères, 1 majuscule, 1 minuscule, 1 chiffre";
+            AUTH_FIELD_VALIDATION.password;
         }
 
         return error;
-    };
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormValues({ ...formValues, [name]: value });
     };
 
     const handleRegister = async (e) => {
@@ -101,31 +98,20 @@ export default function Register() {
     const submitForm = async () => {
         try {
             setLoading(true);
-            const response = await fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/auth/signup`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formValues)
-            });
-            if (!response.ok) {
-                const error = await response.json();
-                throw error;
-            };
+            await AuthService.register(formValues);
             setFormValues(initialValues);
             setUserCreated(true);
         } catch (err) {
             console.log(err);
             if (err?.error) {
-                setBadSubmit("Email déjà utilisé");
+                setBadSubmit(ERROR_MESSAGES.emailAlreadyUsed);
             } else {
-                setBadSubmit("Merci de réessayer plus tard");
+                setBadSubmit(ERROR_MESSAGES.tryAgainLater);
             }
         } finally {
             setLoading(false);
         }
     };
-
 
     useEffect(() => {
         if (userCreated) {
@@ -200,7 +186,8 @@ export default function Register() {
                     <button
                         className="connection_form_group_btn"
                         aria-label="Voir le mot de passe"
-                        onClick={(e) => togglePassword(e)}
+                        type="button"
+                        onClick={() => setPasswordShown(!passwordShown)}
                     >
                         {passwordShown ? (
                             <VisibilityOffIcon style={{ fontSize: "clamp(1.6rem, 2vw, 2rem)" }} />

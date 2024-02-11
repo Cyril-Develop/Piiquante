@@ -77,7 +77,7 @@ export default function Sauce() {
                         ) : (
                             <div className="sauce_wrapper_content_user">
                                 <p>
-                                    Publié par :{" "}
+                                    Publié par :
                                     <span>
                                         {data.userFirstname} {data.userLastname}
                                     </span>

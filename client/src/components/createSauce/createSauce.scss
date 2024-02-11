@@ -68,18 +68,16 @@
                         height: 4rem;
                     }
                 }
-                
+
                 input[type="range"] {
                     padding-left: unset;
                     cursor: pointer;
                     appearance: none;
                     background: transparent;
-                    background-image: linear-gradient(
-                        to bottom,
-                        #fff,
-                        #999,
-                        #fff
-                    );
+                    background-image: linear-gradient(to bottom,
+                            #fff,
+                            #999,
+                            #fff);
                     background-position: center;
                     background-repeat: no-repeat;
                     background-size: 100% 25%;
@@ -95,6 +93,12 @@
                         background: linear-gradient(#888, #fff) content-box,
                             linear-gradient(-90deg, #888, #ddd);
                     }
+
+                }
+
+                .error {
+                    color: $color-secondary;
+                    text-align: left;
                 }
 
                 textarea {
@@ -107,6 +111,7 @@
             &_image {
                 display: flex;
                 align-items: center;
+                justify-content: space-between;
                 gap: 2rem;
                 height: 5rem;
                 font-size: clamp(1.6rem, 1.8vw, 1.8rem);
@@ -129,11 +134,27 @@
                         font-size: inherit;
                     }
                 }
+
+                p{
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    max-width: 30%;
+                }
+                
+                img{
+                    height: 5rem;
+                }
             }
 
             button {
                 @include btn;
             }
+
+        }
+
+        .error {
+            color: $color-secondary;
         }
     }
 }

@@ -12,13 +12,8 @@ export const AuthContextProvider = ({ children }) => {
         localStorage.setItem("user", JSON.stringify(currentUser));
     }, [currentUser]);
 
-    const logout = () => {
-        localStorage.removeItem("user");
-        setCurrentUser(null);
-    };
-
     return (
-        <AuthContext.Provider value={{ logout, setCurrentUser, currentUser }}>
+        <AuthContext.Provider value={{ setCurrentUser, currentUser }}>
             {children}
         </AuthContext.Provider>
     )

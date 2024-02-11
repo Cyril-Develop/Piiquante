@@ -1,14 +1,13 @@
 import "./navbar.scss";
 import { Link } from "react-router-dom";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { useContext, useState } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import CreateSauce from "../createSauce/CreateSauce";
 import HomeIcon from "@mui/icons-material/Home";
+import AuthService from "../../services/AuthService";
 
 export default function Nav() {
-    const { logout } = useContext(AuthContext);
     const [openModal, setOpenModal] = useState(false);
 
     return (
@@ -37,7 +36,7 @@ export default function Nav() {
                         to="/piiquante/login"
                         className="logout"
                         aria-label="Se déconnecter"
-                        onClick={logout}
+                        onClick={AuthService.logout}
                     >
                         <span>Se déconnecter</span>
                         <LogoutIcon />
