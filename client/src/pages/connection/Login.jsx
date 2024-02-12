@@ -38,8 +38,8 @@ export default function Login() {
     const handleLogin = async (email, password) => {
         try {
             setLoading(true);
-            const data = await AuthService.login(email, password);
-            setCurrentUser(data);
+            const user = await AuthService.login(email, password);
+            setCurrentUser(user);
             navigate("/piiquante/");
         } catch (err) {
             console.log(err);

@@ -1,27 +1,28 @@
-import "./sauce.scss";
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
-import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import Loader from "../../components/loader/Loader";
-import Like from "../../components/like/Like";
-import UpdateSauce from "../../components/updateSauce/UpdateSauce";
+import { useContext } from "react";
+import { useParams } from "react-router-dom";
 import Author from "../../components/author/Author";
+import Like from "../../components/like/Like";
+import Loader from "../../components/loader/Loader";
+import UpdateSauce from "../../components/updateSauce/UpdateSauce";
+import { AuthContext } from "../../context/AuthContext";
+import "./sauce.scss";
 
 export default function Sauce() {
     const { id } = useParams();
     const { currentUser } = useContext(AuthContext);
     const token = currentUser?.token;
 
-    const { isLoading, error, data } = useQuery({
-        queryKey: ["sauce"],
-        queryFn: () =>
-            fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/sauces/${id}`, {
-                headers: {
-                    authorization: `bearer ${token}`,
-                },
-            }).then((res) => res.json()),
-    });
+    const fetchSauce = async () => {
+        const response = await fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/sauces/${id}`, {
+            headers: {
+                authorization: `bearer ${token}`,
+            },
+        });
+        return response.json();
+    }
+
+    const { isLoading, error, data } = useQuery({ queryKey: ["sauce"], queryFn: fetchSauce });
 
     return (
         <main className="sauce">
@@ -49,7 +50,7 @@ export default function Sauce() {
                             })}.
                         </p>
                         <p>{data.description}</p>
-                        <Like like={data.likes} dislike={data.dislikes} />
+                        <Like like={data.likes} dislike={data.dislikes} id={id} />
                         {currentUser.userId === data.userId ?
                             <UpdateSauce />
                             :

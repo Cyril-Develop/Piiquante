@@ -1,23 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
-import "./home.scss";
 import Card from "../../components/card/Card";
 import Loader from "../../components/loader/Loader";
+import { AuthContext } from "../../context/AuthContext";
+import "./home.scss";
 
 export default function Home() {
     const { currentUser } = useContext(AuthContext);
     const token = currentUser?.token;
 
-    const { isLoading, error, data } = useQuery({
-        queryKey: ["sauces"],
-        queryFn: () =>
-            fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/sauces`, {
-                headers: {
-                    authorization: `bearer ${token}`,
-                },
-            }).then((res) => res.json()),
-    });
+    const fetchSauces = async () => {
+        const response = await fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/sauces`, {
+            headers: {
+                authorization: `bearer ${token}`,
+            },
+        });
+        return response.json();
+    }
+
+    const { isLoading, error, data } = useQuery({ queryKey: ["sauces"], queryFn: fetchSauces });
 
     return (
         <main className="home">

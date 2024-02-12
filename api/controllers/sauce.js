@@ -68,37 +68,53 @@ exports.deleteSauce = (req, res) => {
     .catch((error) => res.status(500).json({ error }));
 };
 
-exports.likeSauce = (req, res) => {
-    Sauce.findOne({ _id: req.params.id })
-        .then(sauce => {
-            if (req.body.like === 1) {
-                if (sauce.usersLiked.includes(req.body.userId)) {
-                    res.status(401).json({error: 'Sauce déja liké'});
-                } else {
-                    Sauce.updateOne({ _id: req.params.id }, { $inc: { likes: req.body.like++ }, $push: { usersLiked: req.body.userId } })
-                        .then(() => res.status(200).json({ message: 'Like ajouté !' }))
-                        .catch(error => res.status(400).json({ error }))
-                }
-            } 
-            else if (req.body.like === -1) {
-                if (sauce.usersDisliked.includes(req.body.userId)) {
-                    res.status(401).json({error: 'Sauce déja disliké'});
-                } else {
-                    Sauce.updateOne({ _id: req.params.id }, { $inc: { dislikes: (req.body.like++) * -1 }, $push: { usersDisliked: req.body.userId } })
-                        .then(() => res.status(200).json({ message: 'Dislike ajouté !' }))
-                        .catch(error => res.status(400).json({ error }));
-                }
-            } else {
-                if (sauce.usersLiked.includes(req.body.userId)) {
-                    Sauce.updateOne({ _id: req.params.id }, { $pull: { usersLiked: req.body.userId }, $inc: { likes: -1 } })
-                        .then(() => { res.status(200).json({ message: 'Like supprimé !' }) })
-                        .catch(error => res.status(400).json({ error }));
-                } else if (sauce.usersDisliked.includes(req.body.userId)) {
-                    Sauce.updateOne({ _id: req.params.id }, { $pull: { usersDisliked: req.body.userId }, $inc: { dislikes: -1 } })
-                            .then(() => { res.status(200).json({ message: 'Dislike supprimé !' }) })
-                            .catch(error => res.status(400).json({ error }));
-                }
-            }
-        })
-        .catch(error => res.status(400).json({ error }));   
+//LIKE & DISLIKE
+exports.likeSauce = async (req, res) => {
+    try {
+        const sauce = await Sauce.findOne({ _id: req.params.id });
+        // Gestion des actions en fonction de la valeur de like
+        if (req.body.like === 1) {
+            handleLike(sauce, req.body.userId, res);
+        } else if (req.body.like === -1) {
+            handleDislike(sauce, req.body.userId, res);
+        } 
+    } catch (error) {
+        res.status(500).json({ error: 'Erreur interne du serveur.' });
+    }
 };
+
+// Fonction pour gérer le like
+async function handleLike(sauce, userId, res) {
+    try {
+        if (sauce.usersLiked.includes(userId)) {
+            await Sauce.updateOne({ _id: sauce._id }, { $pull: { usersLiked: userId }, $inc: { likes: -1 } });
+        } else {
+            await Sauce.updateOne({ _id: sauce._id }, { $inc: { likes: 1 }, $push: { usersLiked: userId } });
+            // Si l'utilisateur avait déjà disliké la sauce, on retire le dislike
+            if (sauce.usersDisliked.includes(userId)) {
+                await Sauce.updateOne({ _id: sauce._id }, { $pull: { usersDisliked: userId }, $inc: { dislikes: -1 } });
+            }
+        }
+        res.status(200).json({ message: 'Like/dislike mis à jour !' });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+}
+
+// Fonction pour gérer le dislike
+async function handleDislike(sauce, userId, res) {
+    try {
+        if (sauce.usersDisliked.includes(userId)) {
+            await Sauce.updateOne({ _id: sauce._id }, { $pull: { usersDisliked: userId }, $inc: { dislikes: -1 } });
+        } else {
+            await Sauce.updateOne({ _id: sauce._id }, { $inc: { dislikes: 1 }, $push: { usersDisliked: userId } });
+            // Si l'utilisateur avait déjà liké la sauce, on retire le like
+            if (sauce.usersLiked.includes(userId)) {
+                await Sauce.updateOne({ _id: sauce._id }, { $pull: { usersLiked: userId }, $inc: { likes: -1 } });
+            }
+        }
+        res.status(200).json({ message: 'Like/dislike mis à jour !' });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+}
