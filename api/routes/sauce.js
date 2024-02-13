@@ -2,13 +2,14 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
 const multer = require('../middleware/multer');
+const resize = require('../middleware/sharp');
 
 const sauceCtrl = require('../controllers/sauce');
 
 router.get('/', auth, sauceCtrl.getAllSauces);
 router.get('/:id', auth, sauceCtrl.getOneSauce);
-router.post('/', auth, multer, sauceCtrl.createSauce);
-router.put('/:id', auth, multer, sauceCtrl.updateSauce);
+router.post('/', auth, multer, resize, sauceCtrl.createSauce);
+router.put('/:id', auth, multer, resize, sauceCtrl.updateSauce);
 router.delete('/:id', auth, sauceCtrl.deleteSauce);
 router.post('/:id/like', auth, sauceCtrl.likeSauce);
 

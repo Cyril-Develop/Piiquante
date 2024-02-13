@@ -41,7 +41,7 @@ export default function Sauce() {
                                 : "|Ingrédient : "}
                             {data.ingredients.join(" ")}.
                         </p>
-                        <p>{data.description}</p>
+                        <p className="sauce_wrapper_content_description">{data.description}</p>
                         <Like like={data.likes} dislike={data.dislikes} id={id} />
                         {currentUser.userId === data.userId ?
                             <UpdateSauce />

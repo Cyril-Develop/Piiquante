@@ -4,13 +4,11 @@ const multer = require('multer');
 const MIME_TYPE = {
     "image/jpg" : "jpg",
     "image/jpeg" : "jpg",
-    "image/png" : "png"
-}
+    "image/png" : "png",
+    "image/webp" : "webp"
+};
 
 const storage = multer.diskStorage({
-    destination : (req, file, callback) => {
-        callback(null, "images");
-    },
     filename: (req, file, callback) => {
         //Remove the spaces from the original file and replace them with _
         const name = file.originalname.split(' ').join('_');

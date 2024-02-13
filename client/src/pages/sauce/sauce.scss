@@ -7,10 +7,10 @@
 
     &_wrapper {
         display: flex;
+        gap: 2rem;
         max-width: 80rem;
         border-radius: .5rem;
         overflow: hidden;
-        border: 1px solid rgba(128, 128, 128, 0.2);
 
         &_img {
             display: flex;
@@ -52,6 +52,10 @@
                 }
             }
 
+            &_description {
+                text-align: justify;
+            }
+
             &_ingredients {
                 text-transform: capitalize;
             }
@@ -62,7 +66,7 @@
                 padding: 1rem 2rem;
                 letter-spacing: .1rem;
                 border-radius: 5px;
-                background-color: #7451eb;
+                background-color: $color-quaternary;
                 color: $color-primary;
             }
         }

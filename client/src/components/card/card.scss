@@ -3,11 +3,9 @@
 .card {
     position: relative;
     display: flex;
-    // width: 23%;
-    max-height: 50rem;
+    width: 23%;
     border-radius: .5rem;
     overflow: hidden;
-    border: 1px solid rgba(128, 128, 128, 0.2);
 
     &_link {
         display: flex;
