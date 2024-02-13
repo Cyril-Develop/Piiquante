@@ -5,6 +5,7 @@
     display: flex;
     width: 23%;
     border-radius: .5rem;
+    border-top-right-radius: 0;
     overflow: hidden;
 
     &_link {

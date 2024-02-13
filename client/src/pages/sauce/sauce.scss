@@ -9,14 +9,16 @@
         display: flex;
         gap: 2rem;
         max-width: 80rem;
-        border-radius: .5rem;
-        overflow: hidden;
+       
+        
 
         &_img {
             display: flex;
             flex-direction: column;
-            width: 50%;
-
+            width: 50%; 
+            border-radius: .5rem;
+            overflow: hidden;
+            
             img {
                 height: 90%;
                 object-fit: cover;

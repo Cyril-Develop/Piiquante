@@ -1,7 +1,6 @@
 const sharp = require('sharp');
 
 const resize = (req, res, next) => {
-    console.log('File:', req.file);
     if (!req.file) {
         return res.status(400).json({ error: 'No file uploaded.' });
     }
