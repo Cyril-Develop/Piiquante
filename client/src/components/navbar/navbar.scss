@@ -5,6 +5,7 @@
     justify-content: space-between;
     width: 100%;
     padding: 0 2rem;
+    margin-top: 1rem;
 
     @media screen and (max-width: 790px) {
         padding: 0 1rem;
@@ -25,6 +26,7 @@
         }
 
         li {
+
             button,
             a,
             span {
@@ -34,6 +36,7 @@
                 font-weight: 600;
                 font-family: "Fjord One", serif;
                 font-size: clamp(1.6rem, 1.6vw, 2rem);
+                @include link-hover;
 
                 svg {
                     font-size: inherit;

@@ -2,9 +2,11 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./connection.scss";
+import BG from "../../assets/bg-register.webp";
+import BannerForm from "../../components/bannerForm/BannerForm";
 import AuthService from "../../services/AuthService";
-import { ERROR_MESSAGES, AUTH_FIELD_VALIDATION } from "../../utils/errorMessages";
+import { AUTH_FIELD_VALIDATION, ERROR_MESSAGES } from "../../utils/errorMessages";
+import "./connection.scss";
 
 export default function Register() {
     const [passwordShown, setPasswordShown] = useState(false);
@@ -47,7 +49,7 @@ export default function Register() {
             )
         ) {
             error.lastname =
-            AUTH_FIELD_VALIDATION.lastname;
+                AUTH_FIELD_VALIDATION.lastname;
         }
 
         if (
@@ -57,7 +59,7 @@ export default function Register() {
             )
         ) {
             error.firstname =
-            AUTH_FIELD_VALIDATION.firstname;
+                AUTH_FIELD_VALIDATION.firstname;
         }
 
         if (
@@ -76,7 +78,7 @@ export default function Register() {
             )
         ) {
             error.password =
-            AUTH_FIELD_VALIDATION.password;
+                AUTH_FIELD_VALIDATION.password;
         }
 
         return error;
@@ -124,86 +126,88 @@ export default function Register() {
 
     return (
         <main className="connection">
-            {userCreated && (
-                <div className="connection_modal">
-                    <p>Compte créé avec succés !</p>
-                </div>
-            )}
-            <form
-                className="connection_form"
-                noValidate
-                onSubmit={handleRegister}
-            >
-                <h2>Inscription</h2>
-                <div className="connection_form_group">
-                    <label htmlFor="lastname">Nom</label>
-                    <input
-                        type="text"
-                        id="lastname"
-                        name="lastname"
-                        maxLength={30}
-                        value={formValues.lastname}
-                        onChange={handleChange}
-                    />
-                    {formError.lastname && <span>{formError.lastname}</span>}
-                </div>
-                <div className="connection_form_group">
-                    <label htmlFor="firstname">Prénom</label>
-                    <input
-                        type="text"
-                        id="firstname"
-                        name="firstname"
-                        maxLength={30}
-                        value={formValues.firstname}
-                        onChange={handleChange}
-                    />
-                    {formError.firstname && <span>{formError.firstname}</span>}
-                </div>
-                <div className="connection_form_group">
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="user@guest.com"
-                        maxLength={40}
-                        value={formValues.email}
-                        onChange={handleChange}
-                    />
-                    {formError.email && <span>{formError.email}</span>}
-                </div>
-                <div className="connection_form_group password">
-                    <label htmlFor="password">Mot de passe</label>
-                    <input
-                        type={passwordShown ? "text" : "password"}
-                        id="password"
-                        name="password"
-                        maxLength={30}
-                        value={formValues.password}
-                        onChange={handleChange}
-                    />
-                    {formError.password && <span>{formError.password}</span>}
-                    <button
-                        className="connection_form_group_btn"
-                        aria-label="Voir le mot de passe"
-                        type="button"
-                        onClick={() => setPasswordShown(!passwordShown)}
-                    >
-                        {passwordShown ? (
-                            <VisibilityOffIcon style={{ fontSize: "clamp(1.6rem, 2vw, 2rem)" }} />
-                        ) : (
-                            <VisibilityIcon style={{ fontSize: "clamp(1.6rem, 2vw, 2rem)" }} />
-                        )}
-                    </button>
-                </div>
-                <button className="connection_form_btn_submit" type="submit">
-                    S'inscrire
-                </button>
-                {loading && <div className="connection_form_loader"></div>}
-                {!loading && formError.empty && <span>{formError.empty}</span>}
-                {!loading && !formError.empty && badSubmit && <span>{badSubmit}</span>}
-            </form>
-            <p>Vous possédez déjà un compte ? <Link to={"/piiquante/login"}>Se connecter</Link></p>
+            <div className="connection_wrapper">
+                <BannerForm img={BG} />
+                {userCreated && (
+                    <div className="connection_wrapper_modal">
+                        <p>Compte créé avec succés !</p>
+                    </div>
+                )}
+                <form
+                    className="connection_wrapper_form"
+                    noValidate
+                    onSubmit={handleRegister}
+                >
+                    <h2>Inscription</h2>
+                    <div className="connection_wrapper_form_group">
+                        <label htmlFor="lastname">Nom</label>
+                        <input
+                            type="text"
+                            id="lastname"
+                            name="lastname"
+                            maxLength={30}
+                            value={formValues.lastname}
+                            onChange={handleChange}
+                        />
+                        {formError.lastname && <span className="error_field">{formError.lastname}</span>}
+                    </div>
+                    <div className="connection_wrapper_form_group">
+                        <label htmlFor="firstname">Prénom</label>
+                        <input
+                            type="text"
+                            id="firstname"
+                            name="firstname"
+                            maxLength={30}
+                            value={formValues.firstname}
+                            onChange={handleChange}
+                        />
+                        {formError.firstname && <span className="error_field">{formError.firstname}</span>}
+                    </div>
+                    <div className="connection_wrapper_form_group">
+                        <label htmlFor="email">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="user@guest.com"
+                            maxLength={40}
+                            value={formValues.email}
+                            onChange={handleChange}
+                        />
+                        {formError.email && <span className="error_field">{formError.email}</span>}
+                    </div>
+                    <div className="connection_wrapper_form_group password">
+                        <label htmlFor="password">Mot de passe</label>
+                        <input
+                            type={passwordShown ? "text" : "password"}
+                            id="password"
+                            name="password"
+                            maxLength={30}
+                            value={formValues.password}
+                            onChange={handleChange}
+                        />
+                        {formError.password && <span className="error_field">{formError.password}</span>}
+                        <button
+                            className="connection_wrapper_form_group_btn"
+                            aria-label="Voir le mot de passe"
+                            type="button"
+                            onClick={() => setPasswordShown(!passwordShown)}
+                        >
+                            {passwordShown ?
+                                <VisibilityOffIcon />
+                                :
+                                <VisibilityIcon />
+                            }
+                        </button>
+                    </div>
+                    <div className="connection_wrapper_form_submit">
+                        <button type="submit">S'inscrire</button>
+                        {!loading && formError.empty && <span className="error_field">{formError.empty}</span>}
+                        {!loading && !formError.empty && badSubmit && <span className="error_field">{badSubmit}</span>}
+                    </div>
+                </form>
+            </div>
+            <p className="connection_link">Vous possédez déjà un compte ? <Link to={"/piiquante/login"}>Se connecter</Link></p>
         </main>
     );
 }

@@ -19,32 +19,9 @@
     }
 
     h2 {
-        font-size: clamp(2rem, 2vw, 3rem);
+        font-size: clamp(2rem, 4vw, 5rem);
         color: $color-primary;
         letter-spacing: .1rem;
-    }
-
-    &_modal {
-        position: absolute;
-        top: 2rem;
-        background-color: #005800;
-        color: $color-primary;
-        padding: 1.5rem 2rem;
-        font-family: 'Fjord One', serif;
-        font-weight: 500;
-        font-size: clamp(1.6rem, 2vw, 2rem);
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-2rem);
-        animation: show 0.5s 0.5s forwards;
-
-        @keyframes show {
-            to {
-                opacity: 1;
-                visibility: visible;
-                transform: translateY(0);
-            }
-        }
     }
 
     &_btn-guest {
@@ -54,77 +31,144 @@
         font-size: clamp(1.6rem, 1.8vw, 2rem);
     }
 
-    &_form {
-        //direction justify align gap
-        @include flex(column, center, center, 1.5rem);
-        width: 70%;
-        max-width: 800px;
-        padding: 5rem;
-        background-color: $color-secondary;
-        color: $color-primary;
-        @include tornCard;
+    &_wrapper {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        width: 90%;
+        max-width: 1400px;
+        border-radius: .5rem;
 
-        @media screen and (max-width: 790px) {
-            width: 80%;
+        &_modal {
+            position: absolute;
+            top: 0;
+            background-color: #005800;
+            color: $color-primary;
+            padding: 1.5rem 2rem;
+            font-family: 'Fjord One', serif;
+            font-weight: 100;
+            font-size: clamp(1.6rem, 2vw, 2rem);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-2rem);
+            animation: show 0.5s 0.5s forwards;
+
+            @keyframes show {
+                to {
+                    opacity: 1;
+                    visibility: visible;
+                    transform: translateY(0);
+                }
+            }
         }
 
-        @media screen and (max-width: 500px) {
-            width: 100%;
-            padding: 3rem 2rem;
+        &_banner {
+            width: 50%;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
         }
 
-        &_group {
+        &_form {
             //direction justify align gap
-            @include flex(column, null, null, 1rem);
-            width: 100%;
-            font-size: clamp(1.8rem, 2vw, 2rem);
-
-            label {
-                display: flex;
-                justify-content: space-between;
-            }
-
-            input {
-                height: 5rem;
-                padding-left: 1rem;
-                background-color: $color-primary;
-                font-size: clamp(1.6rem, 1.8vw, 1.8rem);
-                border: 1px solid rgba(0, 0, 0, 0.2);
-
-                @media screen and (max-width: 500px) {
-                    height: 4rem;
-                }
-            }
-
-            &_btn {
-                position: absolute;
-                //direction justify align gap
-                @include flex(row, center, center, null);
-                top: 5rem;
-                right: 1rem;
-                color: $color-dark;
-
-                @media screen and (max-width: 500px) {
-                    top: 4.5rem;
-                }
-            }
-        }
-
-        span {
-            font-size: clamp(1.6rem, 1.6vw, 1.8rem);
-            color: $color-tertiary;
-        }
-
-        &_btn_submit {
-            @include btn;
-        }
-
-        .password {
             position: relative;
+            @include flex(column, center, center, 1.5rem);
+            gap: 4rem;
+            width: 50%;
+            padding: 5rem 4rem;
+            background-color: $color-secondary;
+            color: $color-primary;
+
+            @media screen and (max-width: 790px) {
+                width: 80%;
+            }
+
+            @media screen and (max-width: 500px) {
+                width: 100%;
+                padding: 3rem 2rem;
+            }
+
+            &_group {
+                //direction justify align gap
+                position: relative;
+                @include flex(column, null, null, 1rem);
+                width: 100%;
+                font-size: clamp(1.8rem, 2vw, 2rem);
+
+                label {
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+                input {
+                    height: 5rem;
+                    padding-left: 1rem;
+                    background-color: $color-primary;
+                    font-size: clamp(1.6rem, 1.8vw, 1.8rem);
+                    border: 1px solid rgba(0, 0, 0, 0.2);
+                    border-radius: .5rem;
+
+                    @media screen and (max-width: 500px) {
+                        height: 4rem;
+                    }
+                }
+
+                &_btn {
+                    position: absolute;
+                    //direction justify align gap
+                    @include flex(row, center, center, null);
+                    top: 5rem;
+                    right: 1rem;
+                    color: $color-dark;
+
+                    @media screen and (max-width: 500px) {
+                        top: 4.5rem;
+                    }
+
+                    svg {
+                        font-size: clamp(1.6rem, 2vw, 2rem);
+                    }
+                }
+            }
+
+            span {
+                font-size: clamp(1.6rem, 1.6vw, 1.8rem);
+                color: $color-tertiary;
+            }
+
+            &_submit {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                width: 100%;
+
+                svg {
+                    font-size: clamp(1.6rem, 2vw, 2rem);
+                    background-color: #005800
+                }
+
+                button {
+                    @include btn;
+                }
+            }
+
+            .password {
+                position: relative;
+            }
+
+            .error_field {
+                position: absolute;
+                bottom: -3rem;
+            }
         }
+
     }
 
-    p {
+    &_link {
         text-align: center;
         font-weight: 600;
 

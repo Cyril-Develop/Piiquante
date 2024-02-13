@@ -6,8 +6,8 @@ export const ERROR_MESSAGES = {
 };
 
 export const AUTH_FIELD_VALIDATION = {
-  lastname: "3 à 15 caractères, chiffres et caractères spéciaux différents de - non autorisés",
-  firstname: "3 à 15 caractères, chiffres et caractères spéciaux différents de - non autorisés",
+  lastname: "3 à 15 caractères, chiffres et - autorisés",
+  firstname: "3 à 15 caractères, chiffres et - autorisés",
   email: "Format email incorrect",
   password: "8 caractères minimum, 1 majuscule, 1 minuscule, 1 chiffre",
 };

@@ -3,8 +3,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { ERROR_MESSAGES, SAUCE_FIELD_VALIDATION } from "../../utils/errorMessages";
-import Form from "../form/Form";
-import "../form/form.scss";
+import SauceForm from "../sauceForm/SauceForm";
+import "../sauceForm/sauceForm.scss";
 
 export default function CreateSauce({ setOpenModal }) {
 
@@ -44,11 +44,11 @@ export default function CreateSauce({ setOpenModal }) {
             error.message = ERROR_MESSAGES.emptyFields;
         }
 
-        if (values.name && !/^[A-Za-z\d\s]{5,30}$/.test(values.name)) {
+        if (values.name && values.name.length < 5 || values.name.length > 30) {
             error.name = SAUCE_FIELD_VALIDATION.name;
         }
 
-        if (values.manufacturer && !/^[A-Za-z\d\s]{5,30}$/.test(values.manufacturer)) {
+        if (values.manufacturer && values.manufacturer.length < 5 || values.manufacturer.length > 30) {
             error.manufacturer = SAUCE_FIELD_VALIDATION.manufacturer;
         }
 
@@ -56,7 +56,7 @@ export default function CreateSauce({ setOpenModal }) {
             error.description = SAUCE_FIELD_VALIDATION.description;
         }
 
-        if (values.ingredient && !/^[A-Za-z\d\s,]{5,100}$/.test(values.ingredient)) {
+        if (values.ingredient && values.ingredient.length < 5 || values.ingredient.length > 100) {
             error.ingredient = SAUCE_FIELD_VALIDATION.ingredient;
         }
 
@@ -121,7 +121,7 @@ export default function CreateSauce({ setOpenModal }) {
                     onClick={() => setOpenModal(false)}>
                     <CloseIcon />
                 </button>
-                <Form formValues={formValues} formError={formError} handleChange={handleChange} handleSubmit={handleSubmit} title="Ajouter une sauce" btn="Sélectionner une image" />
+                <SauceForm formValues={formValues} formError={formError} handleChange={handleChange} handleSubmit={handleSubmit} title="Ajouter une sauce" btn="Sélectionner une image" />
             </div>
         </div>
     )

@@ -20,7 +20,7 @@
         padding: 2rem;
         width: 90%;
         max-width: 600px;
-        border-radius: 0.5rem;
+        border-radius: .5rem;
         background-color: $color-primary;
 
         &_btn {
@@ -129,7 +129,7 @@
                     font-weight: 400;
                     cursor: pointer;
                     color: $color-primary;
-                    background-color: #7451eb;
+                    background-color: $color-quaternary;
 
                     svg {
                         font-size: inherit;

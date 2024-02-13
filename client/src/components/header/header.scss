@@ -3,13 +3,9 @@
 .header {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 1rem;
-    height: 25rem;
     text-align: center;
     padding: 1rem 0;
-    background-color: $color-primary;
 
     @media screen and (max-width: 790px) {
         height: 20rem;
