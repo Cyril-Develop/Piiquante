@@ -6,6 +6,7 @@ import Like from "../../components/like/Like";
 import Loader from "../../components/loader/Loader";
 import UpdateSauce from "../../components/updateSauce/UpdateSauce";
 import { AuthContext } from "../../context/AuthContext";
+import FetchService from "../../services/FetchService";
 import "./sauce.scss";
 
 export default function Sauce() {
@@ -13,21 +14,16 @@ export default function Sauce() {
     const { currentUser } = useContext(AuthContext);
     const token = currentUser?.token;
 
-    const fetchSauce = async () => {
-        const response = await fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/sauces/${id}`, {
-            headers: {
-                authorization: `bearer ${token}`,
-            },
-        });
-        return response.json();
-    }
-
-    const { isLoading, error, data } = useQuery({ queryKey: ["sauce"], queryFn: fetchSauce });
+    const { isLoading, error, data } = useQuery({
+        queryKey: ["sauce"], queryFn: async () => {
+            return await FetchService.getSauce(id, token);
+        }
+    });
 
     return (
         <main className="sauce">
             {isLoading && <Loader />}
-            {error && <p>Impossible de charger le contenu...</p>}
+            {error && <p className="sauce_error"> Impossible de charger le contenu...</p>}
             {data && (
                 <article className="sauce_wrapper">
                     <div className="sauce_wrapper_img">
@@ -40,14 +36,10 @@ export default function Sauce() {
                             <p>{data.manufacturer}</p>
                         </div>
                         <p className="sauce_wrapper_content_ingredients">
-                            {data.mainIngredients.length > 1
+                            {data.ingredients.length > 1
                                 ? "|Ingrédients : "
                                 : "|Ingrédient : "}
-                            {data.mainIngredients.map((ingredient, index) => {
-                                return index === data.mainIngredients.length - 1 ?
-                                    ingredient :
-                                    ingredient + ", ";
-                            })}.
+                            {data.ingredients.join(" ")}.
                         </p>
                         <p>{data.description}</p>
                         <Like like={data.likes} dislike={data.dislikes} id={id} />

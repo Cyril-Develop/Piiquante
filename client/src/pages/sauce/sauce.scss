@@ -66,6 +66,10 @@
                 color: $color-primary;
             }
         }
+    }
 
+    &_error {
+        font-size: clamp(2rem, 2vw, 3rem);
+        color: $color-secondary;
     }
 }

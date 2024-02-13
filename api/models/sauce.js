@@ -7,7 +7,7 @@ const sauceSchema = mongoose.Schema({
     name: {type: String, required: true},
     manufacturer: {type:String, required: true},
     description : {type:String, required: true, minlength: 200},
-    mainIngredients : {type: [String], default: []},
+    ingredients : {type: [String], default: []},
     imageUrl : {type:String, required: true},
     heat : {type:Number, required: true},
     likes :{type: Number, default: 0}, 

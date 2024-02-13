@@ -16,6 +16,6 @@ export const SAUCE_FIELD_VALIDATION = {
   name: "5 à 30 caractères, caractères spéciaux non autorisés",
   manufacturer: "5 à 30 caractères, caractères spéciaux non autorisés",
   description: "50 à 400 caractères",
-  ingredient: "5 à 30 caractères, caractères spéciaux non autorisés",
+  ingredient: "5 à 100 caractères. Merci de séparer les ingrédients par une virgule",
   image: "Veuillez sélectionner une image",
 };

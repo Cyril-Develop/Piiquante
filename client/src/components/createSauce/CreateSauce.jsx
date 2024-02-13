@@ -56,7 +56,7 @@ export default function CreateSauce({ setOpenModal }) {
             error.description = SAUCE_FIELD_VALIDATION.description;
         }
 
-        if (values.ingredient && !/^[A-Za-z\d\s]{5,30}$/.test(values.ingredient)) {
+        if (values.ingredient && !/^[A-Za-z\d\s,]{5,100}$/.test(values.ingredient)) {
             error.ingredient = SAUCE_FIELD_VALIDATION.ingredient;
         }
 
@@ -86,7 +86,7 @@ export default function CreateSauce({ setOpenModal }) {
         userFirstname: currentUser.firstname,
         name: formValues.name,
         manufacturer: formValues.manufacturer,
-        mainIngredients: formValues.ingredient.split(" "),
+        ingredients: formValues.ingredient.split(" "),
         description: formValues.description,
         heat: formValues.heat
     }

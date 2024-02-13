@@ -1,15 +1,13 @@
 import CloseIcon from "@mui/icons-material/Close";
 import EditIcon from '@mui/icons-material/Edit';
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useContext, useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import FetchService from "../../services/FetchService";
 import { ERROR_MESSAGES, SAUCE_FIELD_VALIDATION } from "../../utils/errorMessages";
 import Form from '../form/Form';
 import "../form/form.scss";
-import { useQuery } from "@tanstack/react-query";
-
-import { useParams } from "react-router-dom";
-
 
 export default function UpdateSauce() {
 
@@ -18,29 +16,28 @@ export default function UpdateSauce() {
     const { currentUser } = useContext(AuthContext);
     const token = currentUser?.token;
 
-    const fetchSauce = async () => {
-        const response = await fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/sauces/${id}`, {
-            headers: {
-                authorization: `bearer ${token}`,
-            },
-        });
-        return response.json();
-    }
+    const { isLoading, error, data } = useQuery({
+        queryKey: ["sauce"], queryFn: async () => {
+            return await FetchService.getSauce(id, token);
+        }
+    });
 
-    const { isLoading, error, data } = useQuery({ queryKey: ["sauce"], queryFn: fetchSauce });
-
-    //console.log(data);
-
-    const initialValues = {
+    const buildInitialValues = data => ({
         name: data.name,
         manufacturer: data.manufacturer,
         description: data.description,
-        ingredient: data.mainIngredients.join(" ") || "",
+        ingredient: data.ingredients.join(" ") || "",
         heat: data.heat,
         image: data.imageUrl
-    };
+    });
 
-    const [formValues, setFormValues] = useState(initialValues);
+    useEffect(() => {
+        if (!isLoading && !error) {
+            setFormValues(buildInitialValues(data));
+        }
+    }, [isLoading, error, data]);
+
+    const [formValues, setFormValues] = useState(() => buildInitialValues(data));
     const [formError, setFormError] = useState({});
     const [submitted, setSubmitted] = useState(false);
 
@@ -74,7 +71,7 @@ export default function UpdateSauce() {
             error.description = SAUCE_FIELD_VALIDATION.description;
         }
 
-        if (values.ingredient && !/^[A-Za-z\d\s]{5,30}$/.test(values.ingredient)) {
+        if (values.ingredient && !/^[A-Za-z\d\s,]{5,100}$/.test(values.ingredient)) {
             error.ingredient = SAUCE_FIELD_VALIDATION.ingredient;
         }
 
@@ -104,32 +101,34 @@ export default function UpdateSauce() {
         userFirstname: currentUser.firstname,
         name: formValues.name,
         manufacturer: formValues.manufacturer,
-        mainIngredients: formValues.ingredient.split(" "),
+        ingredients: formValues.ingredient.split(" "),
         description: formValues.description,
         heat: formValues.heat
-    }
+    };
     formData.append("sauce", JSON.stringify(sauce));
     formData.append("image", formValues.image);
 
-    // const { mutate } = useMutation({
-    //     mutationFn: async () => {
-    //         return fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/sauces`, {
-    //             method: "POST",
-    //             headers: {
-    //                 authorization: `Bearer ${token}`
-    //             },
-    //             body: formData
-    //         })
-    //     },
-    //     onSuccess: () => {
-    //         queryClient.invalidateQueries("sauces");
-    //         setOpenModal(false);
-    //         setFormValues(initialValues);
-    //     },
-    //     onError: error => {
-    //         console.log("Erreur lors de l'ajout de la sauce", error);
-    //     }
-    // });
+    const queryClient = useQueryClient();
+
+    const { mutate } = useMutation({
+        mutationFn: async () => {
+            return fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/sauces/${id}`, {
+                method: "PUT",
+                headers: {
+                    authorization: `Bearer ${token}`
+                },
+                body: formData
+            })
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries("sauce");
+            setOpenModal(false);
+            setFormValues(buildInitialValues(data));
+        },
+        onError: error => {
+            console.log("Erreur lors de la modification de la sauce", error);
+        }
+    });
 
     return (
         <>
@@ -142,7 +141,7 @@ export default function UpdateSauce() {
                             onClick={() => setOpenModal(false)}>
                             <CloseIcon />
                         </button>
-                        <Form formValues={formValues} formError={formError} handleChange={handleChange} handleSubmit={handleSubmit} title="Modifier la sauce" btn="Remplacer l'image"/>
+                        <Form formValues={formValues} formError={formError} handleChange={handleChange} handleSubmit={handleSubmit} title="Modifier la sauce" btn="Remplacer l'image" />
                     </div>
                 </div>
             }

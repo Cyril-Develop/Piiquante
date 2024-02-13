@@ -3,22 +3,18 @@ import { useContext } from "react";
 import Card from "../../components/card/Card";
 import Loader from "../../components/loader/Loader";
 import { AuthContext } from "../../context/AuthContext";
+import FetchService from "../../services/FetchService";
 import "./home.scss";
 
 export default function Home() {
     const { currentUser } = useContext(AuthContext);
     const token = currentUser?.token;
 
-    const fetchSauces = async () => {
-        const response = await fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/sauces`, {
-            headers: {
-                authorization: `bearer ${token}`,
-            },
-        });
-        return response.json();
-    }
-
-    const { isLoading, error, data } = useQuery({ queryKey: ["sauces"], queryFn: fetchSauces });
+    const { isLoading, error, data } = useQuery({
+        queryKey: ["sauces"], queryFn: async () => {
+            return await FetchService.getAllSauces(token);
+        }
+    });
 
     return (
         <main className="home">
