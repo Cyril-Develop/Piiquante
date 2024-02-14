@@ -70,7 +70,7 @@ export default function Login() {
             >
                 Se connecter en tant qu'invité
             </button>
-            <div className="connection_wrapper">
+            <div className="connection_wrapper reverse">
                 <form className="connection_wrapper_form" noValidate onSubmit={loginAsUser}>
                     <h2>Connexion</h2>
                     <div className="connection_wrapper_form_group">

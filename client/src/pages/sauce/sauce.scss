@@ -9,16 +9,24 @@
         display: flex;
         gap: 2rem;
         max-width: 80rem;
-       
-        
+
+        @media screen and (max-width: 790px) {
+            flex-direction: column;
+            justify-content: center;
+            gap: 0;
+        }
 
         &_img {
             display: flex;
             flex-direction: column;
-            width: 50%; 
+            width: 50%;
             border-radius: .5rem;
             overflow: hidden;
-            
+
+            @media screen and (max-width: 790px) {
+                width: 100%;
+            }
+
             img {
                 height: 90%;
                 object-fit: cover;
@@ -42,6 +50,10 @@
             flex-direction: column;
             gap: 2rem;
             padding: 1rem;
+
+            @media screen and (max-width: 790px) {
+                width: 100%;
+            }
 
             &_title {
                 display: flex;

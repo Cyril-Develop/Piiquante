@@ -8,8 +8,7 @@
     padding: 1rem 0;
 
     @media screen and (max-width: 790px) {
-        height: 20rem;
-        padding: 0;
+        padding: 1rem 0 0;
     }
 
     h1 {
@@ -25,7 +24,6 @@
                 color: $color-primary;
                 background-color: $color-dark;
                 padding: 1rem 2rem;
-                //transform: rotate(-1deg) skew(-1deg);
             }
         }
     }
