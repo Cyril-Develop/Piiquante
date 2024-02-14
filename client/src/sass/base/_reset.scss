@@ -42,6 +42,11 @@ input,textarea{
     font-family: 'Fjord One', serif;
 }
 
+img{
+    object-fit: cover;
+    object-position: center;
+}
+
 button {
     cursor: pointer;
     border: none;

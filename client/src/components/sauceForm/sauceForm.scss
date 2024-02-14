@@ -23,14 +23,21 @@
         border-radius: .5rem;
         background-color: $color-primary;
 
+        @media screen and (max-width: 500px) {
+            padding: 2rem 1rem;
+        }
+
         &_btn {
             position: absolute;
             right: 2rem;
-            margin-left: auto;
             width: fit-content;
 
+            @media screen and (max-width: 500px) {
+                right: 1rem;
+            }
+
             svg {
-                font-size: clamp(2rem, 2.5vw, 3rem);
+                font-size: clamp(2.5rem, 2.5vw, 3rem);
                 color: $color-secondary;
             }
         }
@@ -130,17 +137,17 @@
                     cursor: pointer;
                     color: $color-primary;
                     background-color: $color-quaternary;
+                    border-radius: .5rem;
+
+                    span{
+                        @media screen and (max-width: 500px) {
+                            display: none;
+                        }
+                    }
 
                     svg {
                         font-size: inherit;
                     }
-                }
-
-                p {
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                    max-width: 30%;
                 }
 
                 img {

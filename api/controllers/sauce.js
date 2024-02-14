@@ -1,3 +1,4 @@
+const { log } = require('console');
 const Sauce = require('../models/sauce');
 const fs = require('fs');
 
@@ -34,7 +35,6 @@ exports.createSauce = (req, res) => {
 };
 
 exports.updateSauce = (req, res) => {
-    console.log(req.body);
     Sauce.findOne({ _id: req.params.id })
         .then(sauce => {
             if (!sauce) {
@@ -43,7 +43,6 @@ exports.updateSauce = (req, res) => {
             if (req.auth.userId !== sauce.userId) {
                 return res.status(403).json({ message: 'Non autorisé !' });
             }
-
             let sauceObject = {};
             if (req.file) {
                 const filename = sauce.imageUrl.split("/").at(-1);

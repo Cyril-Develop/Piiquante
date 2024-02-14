@@ -26,11 +26,11 @@ export default function SauceForm({ formValues, formError, handleChange, handleS
                 {formError.ingredient && <span className="error">{formError.ingredient}</span>}
             </div>
             <div className="modal_content_form_image">
-                <label htmlFor="image" id="select">{btn} <ImageIcon /></label>
+                <label htmlFor="image" id="select"><span>{btn}</span> <ImageIcon /></label>
                 <input type="file" id="image" name="image" onChange={handleChange} />
                 {formError.image ?
                     <span className="error">{formError.image}</span> :
-                    <p>{!formValues.image && "Acune photo"}</p>
+                    <p>{!formValues.image && "Aucune photo"}</p>
                 }
                 {formValues.image && <img src={typeof formValues.image === 'string' ? formValues.image : URL.createObjectURL(formValues.image)} alt="preview" />}
             </div>

@@ -4,26 +4,17 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding: 0 2rem;
+    padding: 1rem 2rem;
     margin-top: 1rem;
 
     @media screen and (max-width: 790px) {
-        padding:1rem;
-    }
-
-    @media screen and (max-width: 500px) {
-        justify-content: unset;
+        padding: 1rem;
     }
 
     ul {
         display: flex;
+        align-items: center;
         gap: 3rem;
-
-        @media screen and (max-width: 500px) {
-            width: 100%;
-            justify-content: space-between;
-            gap: 0;
-        }
 
         li {
 
@@ -35,11 +26,17 @@
                 gap: 0.5rem;
                 font-weight: 600;
                 font-family: "Fjord One", serif;
-                font-size: clamp(1.6rem, 1.6vw, 2rem);
+                font-size: clamp(1.8rem, 1.8vw, 2rem);
                 @include link-hover;
 
                 svg {
                     font-size: inherit;
+                }
+            }
+
+            span {
+                @media screen and (max-width: 500px) {
+                    display: none;
                 }
             }
         }
