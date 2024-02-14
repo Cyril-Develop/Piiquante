@@ -13,7 +13,7 @@ export default function UpdateSauce() {
 
     const [openModal, setOpenModal] = useState(false);
     const { id } = useParams();
-    const { currentUser } = useContext(AuthContext);
+    const { currentUser, userInfos } = useContext(AuthContext);
     const token = currentUser?.token;
 
     const { isLoading, error, data } = useQuery({
@@ -97,8 +97,8 @@ export default function UpdateSauce() {
     const formData = new FormData();
     const sauce = {
         userId: currentUser.userId,
-        userLastname: currentUser.lastname,
-        userFirstname: currentUser.firstname,
+        userLastname: userInfos.lastname,
+        userFirstname: userInfos.firstname,
         name: formValues.name,
         manufacturer: formValues.manufacturer,
         ingredients: formValues.ingredient.split(" "),

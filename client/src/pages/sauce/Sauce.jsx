@@ -11,7 +11,7 @@ import "./sauce.scss";
 
 export default function Sauce() {
     const { id } = useParams();
-    const { currentUser } = useContext(AuthContext);
+    const { currentUser, isAdmin } = useContext(AuthContext);
     const token = currentUser?.token;
 
     const { isLoading, error, data } = useQuery({
@@ -43,10 +43,16 @@ export default function Sauce() {
                         </p>
                         <p className="sauce_wrapper_content_description">{data.description}</p>
                         <Like like={data.likes} dislike={data.dislikes} id={id} />
-                        {currentUser.userId === data.userId ?
-                            <UpdateSauce />
+                        {isAdmin ?
+                            <>
+                                <UpdateSauce />
+                                <Author userLastname={data.userLastname} userFirstname={data.userFirstname} />
+                            </>
                             :
-                            <Author userLastname={data.userLastname} userFirstname={data.userFirstname} />
+                            currentUser.userId === data.userId ?
+                                <UpdateSauce />
+                                :
+                                <Author userLastname={data.userLastname} userFirstname={data.userFirstname} />
                         }
                     </div>
                 </article>

@@ -8,7 +8,7 @@ import "../sauceForm/sauceForm.scss";
 
 export default function CreateSauce({ setOpenModal }) {
 
-    const { currentUser } = useContext(AuthContext);
+    const { currentUser, userInfos } = useContext(AuthContext);
     const token = currentUser?.token;
 
     const queryClient = useQueryClient();
@@ -82,8 +82,8 @@ export default function CreateSauce({ setOpenModal }) {
     const formData = new FormData();
     const sauce = {
         userId: currentUser.userId,
-        userLastname: currentUser.lastname,
-        userFirstname: currentUser.firstname,
+        userLastname: userInfos.lastname,
+        userFirstname: userInfos.firstname,
         name: formValues.name,
         manufacturer: formValues.manufacturer,
         ingredients: formValues.ingredient.split(" "),

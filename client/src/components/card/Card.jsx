@@ -1,15 +1,15 @@
-import "./card.scss";
-import { Link } from "react-router-dom";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import DeleteSauce from "../deleteSauce/DeleteSauce";
+import "./card.scss";
 
 export default function Card({ content }) {
-    const { currentUser } = useContext(AuthContext);
-
+    const { currentUser, isAdmin } = useContext(AuthContext);
+    
     return (
         <article className="card">
-            {currentUser.userId === content.userId && (
+            {(currentUser.userId === content.userId || isAdmin) && (
                 <DeleteSauce id={content._id} />
             )}
             <Link to={`/piiquante/sauce/${content._id}`} className="card_link">

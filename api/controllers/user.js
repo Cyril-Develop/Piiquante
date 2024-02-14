@@ -11,39 +11,49 @@ exports.signup = (req, res) => {
 			const user = new User({
 				lastname: req.body.lastname,
 				firstname: req.body.firstname,
+				role: req.body.role,
 				email: req.body.email,
 				password: hash
-		});
-		user.save()
-		.then(() => res.status(201).send({message: "Utilisateur enregistré !"}))
-		.catch(error => res.status(400).json({error}));
-	})
-	.catch(error => res.status(500).json({error}))
+			});
+			user.save()
+				.then(() => res.status(201).send({ message: "Utilisateur enregistré !" }))
+				.catch(error => res.status(400).json({ error }));
+		})
+		.catch(error => res.status(500).json({ error }))
 };
 
 //User login
 exports.login = (req, res) => {
-	const {email, password} = req.body;
-	User.findOne({email})
+	const { email, password } = req.body;
+	User.findOne({ email })
 		.then(user => {
-			if(!user){
-				res.status(401).send({message: 'Informations erronées !'})
+			if (!user) {
+				res.status(401).send({ message: 'Informations erronées !' })
 			} else {
 				bcrypt.compare(password, user.password)
 					.then(valid => {
-						if(valid){
+						if (valid) {
 							res.status(200).json({
 								userId: user._id,
-								lastname: user.lastname,
-								firstname: user.firstname,
-								token: jwt.sign({userId: user._id}, tokenKey, {expiresIn: "24h"})
+								token: jwt.sign({ userId: user._id }, tokenKey, { expiresIn: "24h" })
 							});
 						} else {
-							res.status(401).send({message: 'Informations erronées !'});
+							res.status(401).send({ message: 'Informations erronées !' });
 						}
 					})
-					.catch(error => res.status(500).json({error}));
+					.catch(error => res.status(500).json({ error }));
 			}
 		})
-		.catch(error => res.status(500).json({error}));
+		.catch(error => res.status(500).json({ error }));
+};
+
+//Get user infos
+exports.getUserInfos = (req, res) => {
+	User.findOne({ _id: req.params.id })
+		.then(user => res.status(200).json({
+			lastname: user.lastname,
+			firstname: user.firstname,
+			role: user.role,
+		}))
+		.catch(error => res.status(404).json({ error }));
 };
