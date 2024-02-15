@@ -11,7 +11,12 @@ const rateLimit = require('express-rate-limit');
 require('./mongo');
 
 //Middleware
-app.use(cors());
+const corsOptions = {
+    origin: 'http://localhost:5173'
+  };
+  
+app.use(cors(corsOptions));
+  
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(helmet());
