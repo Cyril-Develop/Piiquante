@@ -117,6 +117,10 @@
                 height: 5rem;
                 font-size: clamp(1.6rem, 1.8vw, 1.8rem);
 
+                img{
+                    width: auto;
+                }
+
                 input[type="file"] {
                     display: none;
                 }

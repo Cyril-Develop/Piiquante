@@ -31,10 +31,13 @@
         display: flex;
         width: 100%;
         max-width: 1400px;
+        max-height: 750px;
         border-radius: .5rem;
 
         @media screen and (max-width: 790px) {
             flex-direction: column;
+            max-height: unset;
+            max-width: 750px;
         }
 
         &_modal {
