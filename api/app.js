@@ -14,10 +14,7 @@ require('./mongo');
 app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(helmet({
-    crossOriginResourcePolicy: { policy: "same-origin" }
-}));
-
+app.use(helmet());
 
 //Middleware to limit the amount of request done
 const limiter = rateLimit({
