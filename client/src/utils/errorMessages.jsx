@@ -9,7 +9,7 @@ export const AUTH_FIELD_VALIDATION = {
   lastname: "3 à 15 caractères, chiffres et - autorisés",
   firstname: "3 à 15 caractères, chiffres et - autorisés",
   email: "Format email incorrect",
-  password: "8 caractères minimum, 1 majuscule, 1 minuscule, 1 chiffre",
+  password: "8+ carac., majuscule, minuscule, chiffre",
 };
 
 export const SAUCE_FIELD_VALIDATION = {
