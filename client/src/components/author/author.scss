@@ -1,15 +1,16 @@
+@import '../../sass/index.scss';
+
 .author {
-  display: flex;
-  justify-content: flex-end;
-  font-size: clamp(1.4rem, 1.6vw, 1.6rem);
+    //direction justify align gap
+    @include flex(row, flex-end, null, null);
+    font-size: clamp(1.4rem, 1.6vw, 1.6rem);
 
-  p {
-      display: flex;
+    p {
+        display: flex;
 
-      span {
-          display: flex;
-          gap: 1rem;
-          font-style: italic;
-      }
-  }
+        span {
+            @include flex(row, null, null, 1rem);
+            font-style: italic;
+        }
+    }
 }

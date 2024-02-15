@@ -3,10 +3,9 @@
 .home {
     background-color: $color-primary;
     padding: 4rem;
-    display: flex;
-    justify-content: center;
+    //direction justify align gap
+    @include flex(row, center, null, 4rem);
     flex-wrap: wrap;
-    gap: 4rem;
 
     @media screen and (max-width: 790px) {
         padding: 2rem 1rem;

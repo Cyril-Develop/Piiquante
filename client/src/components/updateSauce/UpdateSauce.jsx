@@ -4,7 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import FetchService from "../../services/FetchService";
+import SauceService from "../../services/SauceService";
 import { ERROR_MESSAGES, SAUCE_FIELD_VALIDATION } from "../../utils/errorMessages";
 import SauceForm from "../sauceForm/SauceForm";
 import "../sauceForm/sauceForm.scss";
@@ -18,7 +18,7 @@ export default function UpdateSauce() {
 
     const { isLoading, error, data } = useQuery({
         queryKey: ["sauce"], queryFn: async () => {
-            return await FetchService.getSauce(id, token);
+            return await SauceService.getSauce(id, token);
         }
     });
 

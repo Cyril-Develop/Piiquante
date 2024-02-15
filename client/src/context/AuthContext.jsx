@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
+import UserService from '../services/UserService';
 
 export const AuthContext = createContext();
 
@@ -16,22 +17,14 @@ export const AuthContextProvider = ({ children }) => {
     }, [currentUser]);
 
     useEffect(() => {
-        const getUserInfos = async () => {
+        const userInfos = async () => {
             if (currentUser) {
-                const response = await fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/auth/user/${currentUser.userId}`, {
-                    headers: {
-                        authorization: `bearer ${currentUser.token}`,
-                    },
-                });
-                if (response.ok) {
-                    const data = await response.json();
-                    setUserInfos(data);
-                }
+                const response = await UserService.getUserInfos(currentUser.token, currentUser.userId);
+                setUserInfos(response);
             }
         };
-        getUserInfos();
+        userInfos();
     }, [currentUser]);
-    
 
     useEffect(() => {
         if (userInfos.role === "admin") {

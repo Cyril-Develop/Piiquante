@@ -30,7 +30,7 @@ export default function SauceForm({ formValues, formError, handleChange, handleS
                 <input type="file" id="image" name="image" onChange={handleChange} />
                 {formError.image ?
                     <span className="error">{formError.image}</span> :
-                    <p>{!formValues.image && "Aucune photo"}</p>
+                    <p>{!formValues.image && "Aucune image"}</p>
                 }
                 {formValues.image && <img src={typeof formValues.image === 'string' ? formValues.image : URL.createObjectURL(formValues.image)} alt="preview" />}
             </div>

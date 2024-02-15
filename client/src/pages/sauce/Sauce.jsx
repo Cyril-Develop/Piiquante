@@ -6,7 +6,7 @@ import Like from "../../components/like/Like";
 import Loader from "../../components/loader/Loader";
 import UpdateSauce from "../../components/updateSauce/UpdateSauce";
 import { AuthContext } from "../../context/AuthContext";
-import FetchService from "../../services/FetchService";
+import SauceService from "../../services/SauceService";
 import "./sauce.scss";
 
 export default function Sauce() {
@@ -16,7 +16,7 @@ export default function Sauce() {
 
     const { isLoading, error, data } = useQuery({
         queryKey: ["sauce"], queryFn: async () => {
-            return await FetchService.getSauce(id, token);
+            return await SauceService.getSauce(id, token);
         }
     });
 

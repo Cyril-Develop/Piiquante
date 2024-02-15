@@ -1,39 +1,28 @@
 @import "../../sass/index.scss";
 
 .sauce {
-    display: flex;
-    justify-content: center;
+    //direction justify align gap
+    @include flex(row, center, null, null);
     padding: 2rem;
 
-    @media screen and (max-width: 790px){
+    @media screen and (max-width: 790px) {
         padding: 2rem 1rem;
     }
-    
+
     &_wrapper {
-        display: flex;
-        justify-content: center;
+        @include flex(row, center, null, null);
 
         @media screen and (max-width: 790px) {
             flex-direction: column;
-            gap: 0;
             max-width: 450px;
         }
 
         &_img {
-            display: flex;
-            flex-direction: column;
+            @include flex(column, null, null, null);
             max-width: 450px;
-            
-            img {    
-                width: 100%;
-                height: 100%;
-            }
 
             p {
-                flex-grow: 1;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                @include flex(row, center, center, null);
                 background-color: $color-dark;
                 color: $color-primary;
                 padding: 1rem;
@@ -42,10 +31,7 @@
 
         &_content {
             width: 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 2rem;
+            @include flex(column, center, null, 2rem);
             padding: 2rem;
             background-color: #ffffff41;
 
@@ -54,9 +40,7 @@
             }
 
             &_title {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
+                @include flex(column, null, center, null);
 
                 h2 {
                     font-size: clamp(2rem, 2.5vw, 3rem);

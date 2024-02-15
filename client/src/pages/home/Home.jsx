@@ -3,7 +3,7 @@ import { useContext } from "react";
 import Card from "../../components/card/Card";
 import Loader from "../../components/loader/Loader";
 import { AuthContext } from "../../context/AuthContext";
-import FetchService from "../../services/FetchService";
+import SauceService from "../../services/SauceService";
 import "./home.scss";
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
 
     const { isLoading, error, data } = useQuery({
         queryKey: ["sauces"], queryFn: async () => {
-            return await FetchService.getAllSauces(token);
+            return await SauceService.getAllSauces(token);
         }
     });
 

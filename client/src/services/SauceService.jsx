@@ -1,4 +1,4 @@
-class FetchService {
+class SauceService {
     async getAllSauces(token) {
         const response = await fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/sauces`, {
             headers: {
@@ -26,4 +26,4 @@ class FetchService {
     }
 }
 
-export default new FetchService();
+export default new SauceService();

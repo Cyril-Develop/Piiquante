@@ -1,8 +1,8 @@
 @import "../../sass/index.scss";
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
+    //direction justify align gap
+    @include flex(row, space-between, null, null);
     width: 100%;
     padding: 1rem 2rem;
     margin-top: 1rem;
@@ -12,20 +12,15 @@
     }
 
     ul {
-        display: flex;
-        align-items: center;
-        gap: 3rem;
+        @include flex(row, null, center, 3rem);
 
         li {
 
             button,
             a,
             span {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
+                @include flex(row, null, center, .5rem);
                 font-weight: 600;
-                font-family: "Fjord One", serif;
                 font-size: clamp(1.8rem, 1.8vw, 2rem);
                 @include link-hover;
 
