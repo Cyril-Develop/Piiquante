@@ -2,7 +2,7 @@
 
 .home {
     background-color: $color-primary;
-    padding: 4rem;
+    padding: 2rem;
     //direction justify align gap
     @include flex(row, center, null, 4rem);
     flex-wrap: wrap;

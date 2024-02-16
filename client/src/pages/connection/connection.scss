@@ -2,15 +2,11 @@
 
 .connection {
     //direction justify align gap
-    @include flex(column, center, center, 5rem);
+    @include flex(column, center, center, 2rem);
     padding: 2rem 1rem;
     min-height: calc(100vh - 25rem);
     background-color: $color-primary;
     position: relative;
-
-    @media screen and (max-width: 790px) {
-        gap: 3rem;
-    }
 
     h2 {
         font-size: clamp(2.5rem, 4vw, 5rem);
