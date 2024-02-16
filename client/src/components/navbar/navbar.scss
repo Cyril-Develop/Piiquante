@@ -25,7 +25,7 @@
                 @include link-hover;
 
                 svg {
-                    font-size: inherit;
+                    font-size: clamp(2.2rem, 1.8vw, 2.5rem);
                 }
             }
 

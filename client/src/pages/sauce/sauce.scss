@@ -37,6 +37,8 @@
 
             @media screen and (max-width: 790px) {
                 width: 100%;
+                background-color: unset;
+                padding: 2rem 0;
             }
 
             &_title {
