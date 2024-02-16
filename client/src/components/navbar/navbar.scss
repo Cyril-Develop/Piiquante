@@ -5,10 +5,10 @@
     @include flex(row, space-between, null, null);
     width: 100%;
     padding: 1rem 2rem;
-    margin-top: 1rem;
+    margin-top: 2rem;
 
     @media screen and (max-width: 790px) {
-        padding: 1rem;
+        padding: 0 1rem;
     }
 
     ul {
