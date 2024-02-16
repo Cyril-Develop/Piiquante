@@ -9,7 +9,8 @@ const resize = (req, res, next) => {
                 if (err) {
                     console.log('Error resizing image:', err);
                     return res.status(400).json({ error: 'Image not resized.' });
-                }
+                };
+                req.file.filename = req.file.filename + '.webp';
                 next();
             });
     } else {
