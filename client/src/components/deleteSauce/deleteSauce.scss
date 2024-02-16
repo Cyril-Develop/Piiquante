@@ -5,10 +5,10 @@
     @include flex(row, center, center, null);
     position: absolute;
     top: 0;
-    right: 0;
+    left: 0;
     padding: .5rem;
     background-color: $color-primary;
-    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
 
     &:hover {
         color: $color-secondary;
