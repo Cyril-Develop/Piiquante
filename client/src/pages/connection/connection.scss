@@ -36,31 +36,26 @@
             max-width: 750px;
         }
 
-        &_modal {
-            position: absolute;
-            top: 0;
-            background-color: #005800;
-            color: $color-primary;
-            padding: 1.5rem 2rem;
-            font-family: 'Fjord One', serif;
-            font-weight: 100;
-            font-size: clamp(1.6rem, 2vw, 2rem);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-2rem);
-            animation: show 0.5s 0.5s forwards;
+        &_banner {
+            position: relative;
+            width: 50%;
 
-            @keyframes show {
-                to {
-                    opacity: 1;
-                    visibility: visible;
-                    transform: translateY(0);
+            p {
+                position: absolute;
+                text-align: center;
+                bottom: 0;
+                width: 100%;
+                height: 5rem;
+                line-height: 5rem;
+                font-weight: 600;
+                backdrop-filter: blur(5px);
+
+                background-color: #ffffff67;
+
+                a {
+                    @include link-hover;
                 }
             }
-        }
-
-        &_banner {
-            width: 50%;
 
             @media screen and (max-width: 790px) {
                 width: 100%;
@@ -126,6 +121,16 @@
                     svg {
                         font-size: clamp(1.6rem, 2vw, 2rem);
                     }
+                }
+
+            }
+
+            p {
+                position: absolute;
+                bottom: 2rem;
+
+                a {
+                    @include link-hover;
                 }
             }
 

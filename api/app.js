@@ -34,10 +34,12 @@ const limiter = rateLimit({
 app.use(limiter);
 
 //Routes
+const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const sauceRoutes = require('./routes/sauce');
 
-app.use('/piiquante/api/auth', userRoutes);
+app.use('/piiquante/api/auth', authRoutes);
+app.use('/piiquante/api/user', userRoutes);
 app.use('/piiquante/api/sauces', sauceRoutes);
 app.use('/piiquante/api/images', express.static(path.join(__dirname, 'images')));
 

@@ -1,4 +1,3 @@
-const { log } = require('console');
 const Sauce = require('../models/sauce');
 const fs = require('fs');
 

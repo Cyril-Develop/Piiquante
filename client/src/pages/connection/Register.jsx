@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import BG from "../../assets/bg-register.webp";
 import BannerForm from "../../components/bannerForm/BannerForm";
+import ModalConfirm from "../../components/modalConfirm/ModalConfirm";
 import AuthService from "../../services/AuthService";
 import { AUTH_FIELD_VALIDATION, ERROR_MESSAGES } from "../../utils/errorMessages";
 import "./connection.scss";
@@ -129,9 +130,7 @@ export default function Register() {
             <div className="connection_wrapper">
                 <BannerForm img={BG} />
                 {userCreated && (
-                    <div className="connection_wrapper_modal">
-                        <p>Compte créé avec succés !</p>
-                    </div>
+                    <ModalConfirm content={"Compte créé avec succés !"} />
                 )}
                 <form
                     className="connection_wrapper_form"

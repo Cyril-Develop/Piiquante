@@ -78,7 +78,7 @@ export default function Login() {
                         <input type="email" id="email" name="email" maxLength={40} />
                     </div>
                     <div className="connection_wrapper_form_group password">
-                        <label htmlFor="password">Mot de passe</label>
+                        <label htmlFor="current-password">Mot de passe</label>
                         <input
                             type={passwordShown ? "text" : "password"}
                             id="password"
@@ -103,7 +103,7 @@ export default function Login() {
                         {!loading && error && <span className="error_field">{error}</span>}
                     </div>
                 </form>
-                <BannerForm img={BG} />
+                <BannerForm img={BG} content={<p>Mot de passe oublié ? <Link to={"/piiquante/email"}> Réinitialiser</Link></p>} />
             </div>
             <p className="connection_link">Pas encore de compte ? <Link to={"/piiquante/register"}>S'inscrire</Link></p>
         </main>
