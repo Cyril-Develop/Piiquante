@@ -29,7 +29,7 @@ class UserService {
     }
 
     async updatePassword(password, id) {
-		const response = await fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/auth/password/:${id}`, {
+		const response = await fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/user/password/${id}`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'

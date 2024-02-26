@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ModalConfirm from '../../components/modalConfirm/ModalConfirm';
 import UserService from "../../services/UserService";
 import { ERROR_MESSAGES } from "../../utils/errorMessages";
-import './email.scss';
+import './reset.scss';
 
 export default function CheckEmail() {
 
@@ -15,9 +15,7 @@ export default function CheckEmail() {
 
     const navigate = useNavigate();
 
-    const returnToLogin = () => {
-        navigate('/piiquante/login');
-    };
+    const returnToLogin = () => navigate('/piiquante/login');
 
     const handleCheckEmail = async e => {
         e.preventDefault();
@@ -70,22 +68,22 @@ export default function CheckEmail() {
                 setConfirm(false);
                 setEmail('');
                 returnToLogin();
-            }, 3000);
+            }, 2000);
             return () => clearTimeout(timer);
         }
     }, [confirm]);
 
     return (
-        <div className='email'>
+        <div className='reset'>
             {confirm && <ModalConfirm content={"Un email vous a été envoyé pour réinitialiser votre mot de passe"} />}
             <h2>Saisissez l'adresse e-mail associée à votre compte</h2>
-            <form className='email_form' onSubmit={handleCheckEmail} noValidate>
-                <div className='email_form_group'>
+            <form className='reset_form' onSubmit={handleCheckEmail} noValidate>
+                <div className='reset_form_group'>
                     <label htmlFor='email'>Email</label>
                     <input type='email' id='email' name='email' value={email} onChange={e => setEmail(e.target.value)} required />
                     {formError.email && <p>{formError.email}</p>}
                 </div>
-                <div className='email_form_btn'>
+                <div className='reset_form_btn'>
                     <button type='button' onClick={returnToLogin}>Annuler</button>
                     <button type='submit'>Confirmer</button>
                 </div>

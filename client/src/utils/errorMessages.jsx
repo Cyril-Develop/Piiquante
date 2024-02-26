@@ -6,6 +6,7 @@ export const ERROR_MESSAGES = {
   emailInvalid: "Email invalide",
   emailNotFound: "L'email n'existe pas",
   emailRequired: "Email requis",
+  passwordDontMatch: "Les mots de passe ne correspondent pas",
 };
 
 export const AUTH_FIELD_VALIDATION = {

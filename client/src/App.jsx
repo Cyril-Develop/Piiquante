@@ -8,8 +8,8 @@ import Login from './pages/connection/Login';
 import Register from './pages/connection/Register';
 import NotFound from './pages/notFound/NotFound';
 import Sauce from './pages/sauce/Sauce';
-import Email from './pages/email/Email';
-import Password from './pages/password/Password';
+import Email from './pages/reset/Email';
+import Password from './pages/reset/Password';
 
 export default function App() {
 
