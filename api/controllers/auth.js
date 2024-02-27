@@ -69,7 +69,19 @@ exports.sendEmail = (req, res) => {
 		from: process.env.EMAIL,
 		to: req.body.email,
 		subject: 'Réinitialisation de mot de passe',
-		text: `Pour réinitialiser votre mot de passe, veuillez cliquer sur ce lien : ${process.env.FRONT_URL}${req.body.userId}`
+		html: `
+		<h1>Piiquante</h1>
+		<p>Veuillez cliquer sur ce <strong><a href="${process.env.FRONT_URL}${req.body.userId}">lien</a></strong> pour réinitialiser votre mot de passe.</p>
+		<p>Si vous n'avez pas demandé de réinitialisation de mot de passe, veuillez ignorer cet email.</p>
+		<i>Ceci est un email automatique, merci de ne pas y répondre.</i>
+		<p>Cordialement, l'équipe Piiquante.</p>
+		`,
+		attachments: [
+			{
+				filename: 'image.png',
+				path: './image/piiquante.png'
+			}
+		]
 	};
 	transporter.sendMail(mailOptions, (error, info) => {
 		if (error) {

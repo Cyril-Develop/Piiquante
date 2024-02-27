@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AUTH_FIELD_VALIDATION, ERROR_MESSAGES } from "../../utils/errorMessages";
 import ModalConfirm from '../../components/modalConfirm/ModalConfirm';
@@ -12,7 +12,6 @@ export default function Password() {
 
     const returnToLogin = () => navigate('/piiquante/login');
 
-    const [passwordShown, setPasswordShown] = useState(false);
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [formError, setFormError] = useState();
