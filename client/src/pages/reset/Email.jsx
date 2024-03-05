@@ -54,7 +54,6 @@ export default function CheckEmail() {
     useEffect(() => {
         if (id) {
             try {
-                console.log(email, id);
                 UserService.sendEmail(email, id);
             } catch (error) {
                 console.log(error);
