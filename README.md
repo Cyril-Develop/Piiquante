@@ -4,7 +4,7 @@
 
 
 
-## 📎 Projet 6 : Piiquante
+## 📎 Projet 6 : Piiquante - Construisez une API sécurisée pour une application d'avis gastronomiques.
 
 
 
